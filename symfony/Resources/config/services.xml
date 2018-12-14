@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="import_customer_address.repository.sql.statement" class="TechDivision\Import\Customer\Address\Repositories\SqlStatementRepository"/>
+        <service id="import_customer_address.repository.customer.address" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.repository.customer.address.datetime" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressDatetimeRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.repository.customer.address.decimal" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressDecimalRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.repository.customer.address.int" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressIntRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.repository.customer.address.text" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressTextRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.repository.customer.address.varchar" class="TechDivision\Import\Customer\Address\Repositories\CustomerAddressVarcharRepository">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+
+        <service id="import_customer_address.action.processor.customer.address.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.datetime.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.datetime.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.datetime.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.decimal.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.decimal.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.decimal.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.int.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.int.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.int.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.text.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.text.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.text.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.varchar.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharCreateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.varchar.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharDeleteProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+        <service id="import_customer_address.action.processor.customer.address.varchar.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharUpdateProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.repository.sql.statement"/>
+        </service>
+
+        <service id="import_customer_address.action.customer.address" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.delete"/>
+        </service>
+        <service id="import_customer_address.action.customer.address.datetime" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.delete"/>
+        </service>
+        <service id="import_customer_address.action.customer.address.decimal" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressDecimalAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.delete"/>
+        </service>
+        <service id="import_customer_address.action.customer.address.int" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressIntAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.int.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.int.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.int.delete"/>
+        </service>
+        <service id="import_customer_address.action.customer.address.text" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressTextAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.text.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.text.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.text.delete"/>
+        </service>
+        <service id="import_customer_address.action.customer.address.varchar" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressVarcharAction">
+            <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.create"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.update"/>
+            <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.delete"/>
+        </service>
+
+        <service id="import_customer_address.assembler.customer.address.attribute" class="TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssembler">
+            <argument type="service" id="import_customer_address.repository.customer.address.datetime"/>
+            <argument type="service" id="import_customer_address.repository.customer.address.decimal"/>
+            <argument type="service" id="import_customer_address.repository.customer.address.int"/>
+            <argument type="service" id="import_customer_address.repository.customer.address.text"/>
+            <argument type="service" id="import_customer_address.repository.customer.address.varchar"/>
+        </service>
+
+        <service id="import_customer_address.processor.customer.address.bunch" class="TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessor">
+            <argument type="service" id="connection"/>
+            <argument type="service" id="import_customer_address.assembler.customer.address.attribute"/>
+            <argument type="service" id="import.repository.eav.attribute.option.value"/>
+            <argument type="service" id="import.repository.eav.attribute"/>
+            <argument type="service" id="import_customer_address.repository.customer.address"/>
+            <argument type="service" id="import_customer_address.action.customer.address"/>
+            <argument type="service" id="import_customer_address.action.customer.address.datetime"/>
+            <argument type="service" id="import_customer_address.action.customer.address.decimal"/>
+            <argument type="service" id="import_customer_address.action.customer.address.int"/>
+            <argument type="service" id="import_customer_address.action.customer.address.text"/>
+            <argument type="service" id="import_customer_address.action.customer.address.varchar"/>
+        </service>
+
+        <service id="import_customer_address.observer.clean.up" class="TechDivision\Import\Customer\Address\Observers\CleanUpObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+        <service id="import_customer_address.observer.customer.address.attribute" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressAttributeObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+        <service id="import_customer_address.observer.customer.address.attribute.update" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressAttributeUpdateObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+        <service id="import_customer_address.observer.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddessObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+        <service id="import_customer_address.observer.last.entity.id" class="TechDivision\Import\Customer\Address\Observers\LastEntityIdObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+
+        <service id="import_customer_address.subject.bunch" class="TechDivision\Import\Customer\Address\Subjects\BunchSubject" shared="false">
+            <argument type="service" id="import.processor.registry"/>
+            <argument type="service" id="import.generator.core.config.data.uid"/>
+            <argument type="service" id="loggers"/>
+            <argument type="service" id="import.events.emitter"/>
+        </service>
+
+    </services>
+
+</container>
