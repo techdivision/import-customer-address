@@ -61,9 +61,9 @@ class CustomerAddressVarcharRepository extends AbstractRepository implements Cus
 
         // initialize the prepared statements
         $this->customerVarcharsStmt =
-            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_VARCHARS));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS_VARCHARS));
         $this->customerVarcharByAttributeCodeAndEntityTypeIdAndAndValueStmt =
-            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_VARCHAR_BY_ATTRIBUTE_CODE_AND_ENTITY_TYPE_ID_AND_VALUE));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS_VARCHAR_BY_ATTRIBUTE_CODE_AND_ENTITY_TYPE_ID_AND_VALUE));
     }
 
     /**

@@ -167,10 +167,13 @@
         <service id="import_customer_address.observer.customer.address.attribute.update" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressAttributeUpdateObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
-        <service id="import_customer_address.observer.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddessObserver">
+        <service id="import_customer_address.observer.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
         <service id="import_customer_address.observer.last.entity.id" class="TechDivision\Import\Customer\Address\Observers\LastEntityIdObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
+        <service id="import_customer_address.observer.export.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressExportObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
 

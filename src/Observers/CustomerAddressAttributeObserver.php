@@ -125,7 +125,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function getPrimaryKeyColumnName()
     {
-        return array(ColumnKeys::ENTITY_ID);
+        return array(ColumnKeys::EMAIL, ColumnKeys::WEBSITE);
     }
 
     /**

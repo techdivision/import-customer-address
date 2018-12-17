@@ -89,8 +89,8 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // load the website ID for the given code
         $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
 
-        // load the customer ID
-        $parentId = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
+        // load the customer
+        $customer = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
 
         // initialize the customer values
         $city = $this->getValue(ColumnKeys::CITY);
@@ -125,7 +125,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         return $this->initializeEntity(
             array(
                 MemberNames::INCREMENT_ID        => $incrementId,
-                MemberNames::PARENT_ID           => $parentId,
+                MemberNames::PARENT_ID           => $customer[MemberNames::ENTITY_ID],
                 MemberNames::CREATED_AT          => $createdAt,
                 MemberNames::UPDATED_AT          => $updatedAt,
                 MemberNames::IS_ACTIVE           => $isActive,

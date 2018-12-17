@@ -20,10 +20,8 @@
 
 namespace TechDivision\Import\Customer\Address\Observers;
 
-use TechDivision\Import\Subjects\ExportableTrait;
-use TechDivision\Import\Subjects\ExportableSubjectInterface;
-use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
 use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
+use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
 
 /**
  * Prepares the artefacts for the customer address export.
@@ -34,7 +32,7 @@ use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
  * @link      https://github.com/techdivision/import-customer-address
  * @link      http://www.techdivision.com
  */
-class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserver implements ExportableSubjectInterface
+class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserver
 {
 
     /**
@@ -42,14 +40,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
      *
      * @var string
      */
-    const ARTEFACT_TYPE = 'customer-address';
-
-    /**
-     * Trait providing export functionality.
-     *
-     * \TechDivision\Import\Subjects\ExportableTrait
-     */
-    use ExportableTrait;
+    const ARTEFACT_TYPE = 'customer-import-address';
 
     /**
      * The customer address bunch processor instance.
@@ -89,11 +80,11 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         // initialize the array for the links
         $artefacts = array();
 
-        $this->newArtefact(
+        $artefacts[] = $this->newArtefact(
             array(
+                ColumnKeys::ENTITY_ID        => null,
                 ColumnKeys::WEBSITE          => $this->getValue(ColumnKeys::WEBSITE),
                 ColumnKeys::EMAIL            => $this->getValue(ColumnKeys::EMAIL),
-                ColumnKeys::ENTITY_ID        => null,
                 ColumnKeys::CITY             => $this->getValue(ColumnKeys::ADDRESS_CITY),
                 ColumnKeys::COMPANY          => $this->getValue(ColumnKeys::ADDRESS_COMPANY),
                 ColumnKeys::COUNTRY_ID       => $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID),
@@ -112,9 +103,9 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::DEFAULT_SHIPPING => $this->getValue(ColumnKeys::ADDRESS_DEFAULT_SHIPPING)
             ),
             array(
+                ColumnKeys::ENTITY_ID        => null,
                 ColumnKeys::WEBSITE          => ColumnKeys::WEBSITE,
                 ColumnKeys::EMAIL            => ColumnKeys::EMAIL,
-                ColumnKeys::ENTITY_ID        => null,
                 ColumnKeys::CITY             => ColumnKeys::ADDRESS_CITY,
                 ColumnKeys::COMPANY          => ColumnKeys::ADDRESS_COMPANY,
                 ColumnKeys::COUNTRY_ID       => ColumnKeys::ADDRESS_COUNTRY_ID,

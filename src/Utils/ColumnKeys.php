@@ -96,6 +96,27 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
     const TELEPHONE = 'telephone';
 
     /**
+     * Name for the column 'street'.
+     *
+     * @var string
+     */
+    const STREET = 'street';
+
+    /**
+     * Name for the column 'default_billing'.
+     *
+     * @var string
+     */
+    const DEFAULT_BILLING = 'default_billing';
+
+    /**
+     * Name for the column 'default_shipping'.
+     *
+     * @var string
+     */
+    const DEFAULT_SHIPPING = 'default_shipping';
+
+    /**
      * Name for the column 'vat_id'.
      *
      * @var string
@@ -128,11 +149,13 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
      *
      * @var string
      */
-    const VAT_REQUEST_SUCCESS = 'vat_request_success';    /**
-    * Name for the column '_address_city'.
-    *
-    * @var string
-    */
+    const VAT_REQUEST_SUCCESS = 'vat_request_success';
+
+    /**
+     * Name for the column '_address_city'.
+     *
+     * @var string
+     */
     const ADDRESS_CITY = '_address_city';
 
     /**

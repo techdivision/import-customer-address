@@ -82,11 +82,11 @@ class MemberNames extends \TechDivision\Import\Customer\Utils\MemberNames
     const REGION_ID = 'region_id';
 
     /**
-     * Name for the member 'street'.
+     * Name for the member 'fax'.
      *
      * @var string
      */
-    const STREET = 'street';
+    const FAX = 'fax';
 
     /**
      * Name for the member 'suffix'.

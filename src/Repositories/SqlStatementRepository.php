@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Customer\Address\Utils\SqlStatements
+ * TechDivision\Import\Customer\Address\Repositories\SqlStatements
  *
  * NOTICE OF LICENSE
  *
@@ -96,7 +96,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      region_id,
                      street,
                      suffix,
-                     telephone
+                     telephone,
                      vat_id,
                      vat_is_valid,
                      vat_request_date,
@@ -120,7 +120,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      :region_id,
                      :street,
                      :suffix,
-                     :telephone
+                     :telephone,
                      :vat_id,
                      :vat_is_valid,
                      :vat_request_date,
