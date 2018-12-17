@@ -29,106 +29,64 @@ namespace TechDivision\Import\Customer\Address\Utils;
  * @link      https://github.com/techdivision/import-customer-address
  * @link      http://www.techdivision.com
  */
-class MemberNames extends \TechDivision\Import\Utils\MemberNames
+class MemberNames extends \TechDivision\Import\Customer\Utils\MemberNames
 {
 
     /**
-     * Name for the member 'email'.
+     * Name for the member 'parent_id'.
      *
      * @var string
      */
-    const EMAIL = 'email';
+    const PARENT_ID = 'parent_id';
 
     /**
-     * Name for the member 'website_id'.
+     * Name for the member 'city'.
      *
      * @var string
      */
-    const WEBSITE_ID = 'website_id';
+    const CITY = 'city';
 
     /**
-     * Name for the member 'group_id'.
+     * Name for the member 'company'.
      *
      * @var string
      */
-    const GROUP_ID = 'group_id';
+    const COMPANY = 'company';
 
     /**
-     * Name for the member 'increment_id'.
+     * Name for the member 'country_id'.
      *
      * @var string
      */
-    const INCREMENT_ID = 'increment_id';
+    const COUNTRY_ID = 'country_id';
 
     /**
-     * Name for the member 'store_id'.
+     * Name for the member 'postcode'.
      *
      * @var string
      */
-    const STORE_ID = 'store_id';
+    const POSTCODE = 'postcode';
 
     /**
-     * Name for the member 'created_at'.
+     * Name for the member 'region'.
      *
      * @var string
      */
-    const CREATED_AT = 'created_at';
+    const REGION = 'region';
 
     /**
-     * Name for the member 'updated_at'.
+     * Name for the member 'region_id'.
      *
      * @var string
      */
-    const UPDATED_AT = 'updated_at';
+    const REGION_ID = 'region_id';
 
     /**
-     * Name for the member 'is_active'.
+     * Name for the member 'fax'.
      *
      * @var string
      */
-    const IS_ACTIVE = 'is_active';
-
-    /**
-     * Name for the member 'disable_auto_group_change'.
-     *
-     * @var string
-     */
-    const DISABLE_AUTO_GROUP_CHANGE = 'disable_auto_group_change';
-
-    /**
-     * Name for the member 'created_in'.
-     *
-     * @var string
-     */
-    const CREATED_IN = 'created_in';
-
-    /**
-     * Name for the member 'prefix'.
-     *
-     * @var string
-     */
-    const PREFIX = 'prefix';
-
-    /**
-     * Name for the member 'firstname'.
-     *
-     * @var string
-     */
-    const FIRSTNAME = 'firstname';
-
-    /**
-     * Name for the member 'middlename'.
-     *
-     * @var string
-     */
-    const MIDDLENAME = 'middlename';
-
-    /**
-     * Name for the member 'lastname'.
-     *
-     * @var string
-     */
-    const LASTNAME = 'lastname';
+    const FAX = 'fax';
 
     /**
      * Name for the member 'suffix'.
@@ -138,86 +96,51 @@ class MemberNames extends \TechDivision\Import\Utils\MemberNames
     const SUFFIX = 'suffix';
 
     /**
-     * Name for the member 'dob'.
+     * Name for the member 'street'.
      *
      * @var string
      */
-    const DOB = 'dob';
+    const STREET = 'street';
 
     /**
-     * Name for the member 'password_hash'.
+     * Name for the member 'telephone'.
      *
      * @var string
      */
-    const PASSWORD_HASH = 'password_hash';
+    const TELEPHONE = 'telephone';
 
     /**
-     * Name for the member 'rp_token'.
+     * Name for the member 'vat_id'.
      *
      * @var string
      */
-    const RP_TOKEN = 'rp_token';
+    const VAT_ID = 'vat_id';
 
     /**
-     * Name for the member 'rp_token_created_at'.
+     * Name for the member 'vat_is_valid'.
      *
      * @var string
      */
-    const RP_TOKEN_CREATED_AT = 'rp_token_created_at';
+    const VAT_IS_VALID = 'vat_is_valid';
 
     /**
-     * Name for the member 'default_billing'.
+     * Name for the member 'vat_request_id'.
      *
      * @var string
      */
-    const DEFAULT_BILLING = 'default_billing';
+    const VAT_REQUEST_ID = 'vat_request_id';
 
     /**
-     * Name for the member 'default_shipping'.
+     * Name for the member 'vat_request_date'.
      *
      * @var string
      */
-    const DEFAULT_SHIPPING = 'default_shipping';
+    const VAT_REQUEST_DATE = 'vat_request_date';
 
     /**
-     * Name for the member 'taxvat'.
+     * Name for the member 'vat_request_success'.
      *
      * @var string
      */
-    const TAXVAT = 'taxvat';
-
-    /**
-     * Name for the member 'confirmation'.
-     *
-     * @var string
-     */
-    const CONFIRMATION = 'confirmation';
-
-    /**
-     * Name for the member 'gender'.
-     *
-     * @var string
-     */
-    const GENDER = 'gender';
-
-    /**
-     * Name for the member 'failures_num'.
-     *
-     * @var string
-     */
-    const FAILURES_NUM = 'failures_num';
-
-    /**
-     * Name for the member 'first_failure'.
-     *
-     * @var string
-     */
-    const FIRST_FAILURE = 'first_failure';
-
-    /**
-     * Name for the member 'lock_expires'.
-     *
-     * @var string
-     */
-    const LOCK_EXPIRES = 'lock_expires';
+    const VAT_REQUEST_SUCCESS = 'vat_request_success';
 }

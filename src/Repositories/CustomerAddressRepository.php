@@ -60,9 +60,9 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
 
         // initialize the prepared statements
         $this->customerAddressStmt =
-            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS));
         $this->customerAddressesStmt =
-            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESSESS));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESSES));
     }
 
     /**
