@@ -225,18 +225,4 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
      * @var string
      */
     const ADDRESS_VAT_ID = '_address_vat_id';
-
-    /**
-     * Name for the column '_address_default_billing'.
-     *
-     * @var string
-     */
-    const ADDRESS_DEFAULT_BILLING = '_address_default_billing';
-
-    /**
-     * Name for the column '_address_default_shipping'.
-     *
-     * @var string
-     */
-    const ADDRESS_DEFAULT_SHIPPING = '_address_default_shipping';
 }
