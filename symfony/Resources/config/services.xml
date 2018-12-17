@@ -148,6 +148,7 @@
             <argument type="service" id="import_customer_address.assembler.customer.address.attribute"/>
             <argument type="service" id="import.repository.eav.attribute.option.value"/>
             <argument type="service" id="import.repository.eav.attribute"/>
+            <argument type="service" id="import_customer.repository.customer"/>
             <argument type="service" id="import_customer_address.repository.customer.address"/>
             <argument type="service" id="import_customer_address.action.customer.address"/>
             <argument type="service" id="import_customer_address.action.customer.address.datetime"/>

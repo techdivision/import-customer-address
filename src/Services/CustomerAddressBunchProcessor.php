@@ -23,6 +23,7 @@ namespace TechDivision\Import\Customer\Address\Services;
 use TechDivision\Import\Connection\ConnectionInterface;
 use TechDivision\Import\Repositories\EavAttributeRepositoryInterface;
 use TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface;
+use TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface;
 use TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssemblerInterface;
 use TechDivision\Import\Customer\Address\Actions\CustomerAddressActionInterface;
 use TechDivision\Import\Customer\Address\Actions\CustomerAddressIntActionInterface;
@@ -57,6 +58,13 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * @var \TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface
      */
     protected $eavAttributeOptionValueRepository;
+
+    /**
+     * The repository to access customer data.
+     *
+     * @var \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface
+     */
+    protected $customerRepository;
 
     /**
      * The repository to access customer address address data.
@@ -128,6 +136,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * @param \TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssemblerInterface $customerAddressAttributeAssembler The customer address attribute assembler to use
      * @param \TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface                $eavAttributeOptionValueRepository The EAV attribute option value repository to use
      * @param \TechDivision\Import\Repositories\EavAttributeRepositoryInterface                           $eavAttributeRepository            The EAV attribute repository to use
+     * @param \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface                      $customerRepository                The customer repository to use
      * @param \TechDivision\Import\Customer\Address\Repositories\CustomerAddressRepositoryInterface       $customerAddressRepository         The customer address repository to use
      * @param \TechDivision\Import\Customer\Address\Actions\CustomerAddressActionInterface                $customerAddressAction             The customer address action to use
      * @param \TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeActionInterface        $customerAddressDatetimeAction     The customer address datetime action to use
@@ -141,6 +150,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
         CustomerAddressAttributeAssemblerInterface $customerAddressAttributeAssembler,
         EavAttributeOptionValueRepositoryInterface $eavAttributeOptionValueRepository,
         EavAttributeRepositoryInterface $eavAttributeRepository,
+        CustomerRepositoryInterface $customerRepository,
         CustomerAddressRepositoryInterface $customerAddressRepository,
         CustomerAddressActionInterface $customerAddressAction,
         CustomerAddressDatetimeActionInterface $customerAddressDatetimeAction,
@@ -153,6 +163,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
         $this->setCustomerAddressAttributeAssembler($customerAddressAttributeAssembler);
         $this->setEavAttributeOptionValueRepository($eavAttributeOptionValueRepository);
         $this->setEavAttributeRepository($eavAttributeRepository);
+        $this->setCustomerRepository($customerRepository);
         $this->setCustomerAddressRepository($customerAddressRepository);
         $this->setCustomerAddressAction($customerAddressAction);
         $this->setCustomerAddressDatetimeAction($customerAddressDatetimeAction);
@@ -226,6 +237,28 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     public function rollBack()
     {
         return $this->connection->rollBack();
+    }
+
+    /**
+     * Set's the repository to load the customers with.
+     *
+     * @param \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface $customerRepository The repository instance
+     *
+     * @return void
+     */
+    public function setCustomerRepository(CustomerRepositoryInterface $customerRepository)
+    {
+        $this->customerRepository = $customerRepository;
+    }
+
+    /**
+     * Return's the repository to load the customers with.
+     *
+     * @return \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface The repository instance
+     */
+    public function getCustomerRepository()
+    {
+        return $this->customerRepository;
     }
 
     /**
@@ -484,6 +517,19 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     public function loadEavAttributeOptionValueByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value)
     {
         return $this->getEavAttributeOptionValueRepository()->findOneByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value);
+    }
+
+    /**
+     * Return's the customer with the passed email and website ID.
+     *
+     * @param string $email     The email of the customer to return
+     * @param string $websiteId The website ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerByEmailAndWebsiteId($email, $websiteId)
+    {
+        return $this->getCustomerRepository()->findOneByEmailAndWebsiteId($email, $websiteId);
     }
 
     /**

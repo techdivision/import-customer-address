@@ -25,7 +25,7 @@ use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
 
 /**
- * Observer that create's the customer itself.
+ * Observer that create's the customer address itself.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>
@@ -71,20 +71,11 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function process()
     {
 
-        // load email and website code
-        $email = $this->getValue(ColumnKeys::EMAIL);
-        $website = $this->getValue(ColumnKeys::WEBSITE);
-
-        // query whether or not, we've found a new SKU => means we've found a new customer
-        if ($this->hasBeenProcessed(array($email, $website))) {
-            return;
-        }
-
         // prepare the static entity values
-        $customer = $this->initializeCustomer($this->prepareAttributes());
+        $customerAddress = $this->initializeCustomerAddress($this->prepareAttributes());
 
         // insert the entity and set the entity ID
-        $this->setLastEntityId($this->persistCustomer($customer));
+        $this->setLastEntityId($this->persistCustomerAddress($customerAddress));
     }
 
     /**
@@ -95,87 +86,81 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function prepareAttributes()
     {
 
+        // load the website ID for the given code
+        $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
+
+        // load the customer ID
+        $parentId = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
+
         // initialize the customer values
-        $websiteId = $this->getValue(ColumnKeys::WEBSITE_ID);
-        $email = $this->getValue(ColumnKeys::EMAIL);
-        $groupId = $this->getValue(ColumnKeys::GROUP_ID);
-        $storeId = $this->getValue(ColumnKeys::STORE_ID);
-        $disableAutoGroupChange = $this->getValue(ColumnKeys::DISABLE_AUTO_GROUP_CHANGE);
-        $prefix = $this->getValue(ColumnKeys::PREFIX);
+        $city = $this->getValue(ColumnKeys::CITY);
+        $company = $this->getValue(ColumnKeys::COMPANY);
+        $countryId = $this->getValue(ColumnKeys::COUNTRY_ID);
+        $fax = $this->getValue(ColumnKeys::FAX);
         $firstname = $this->getValue(ColumnKeys::FIRSTNAME);
-        $middlename = $this->getValue(ColumnKeys::MIDDLENAME);
         $lastname = $this->getValue(ColumnKeys::LASTNAME);
+        $middlename = $this->getValue(ColumnKeys::MIDDLENAME);
+        $postcode = $this->getValue(ColumnKeys::POSTCODE);
+        $prefix = $this->getValue(ColumnKeys::PREFIX);
+        $region = $this->getValue(ColumnKeys::REGION);
+        $regionId = $this->getValue(ColumnKeys::REGION_ID);
+        $street = $this->getValue(ColumnKeys::STREET);
         $suffix = $this->getValue(ColumnKeys::SUFFIX);
-        $passwordHash = $this->getValue(ColumnKeys::PASSWORD_HASH);
-        $rpToken = $this->getValue(ColumnKeys::RP_TOKEN);
-        $defaultShipping = $this->getValue(ColumnKeys::ADDRESS_DEFAULT_SHIPPING);
-        $defaultBilling = $this->getValue(ColumnKeys::ADDRESS_DEFAULT_BILLING);
-        $taxvat = $this->getValue(ColumnKeys::TAXVAT);
-        $confirmation = $this->getValue(ColumnKeys::CONFIRMATION);
+        $telephone = $this->getValue(ColumnKeys::TELEPHONE);
+        $vatId = $this->getValue(ColumnKeys::VAT_ID);
+        $vatIsValid = $this->getValue(ColumnKeys::VAT_IS_VALID);
+        $vatRequestId = $this->getValue(ColumnKeys::VAT_REQUEST_ID);
+        $vatRequestSuccess = $this->getValue(ColumnKeys::VAT_REQUEST_SUCCESS);
 
         // load the customer's addtional attributes
-        $createdIn = $this->getValue(ColumnKeys::CREATED_IN);
         $incrementId = null;
         $isActive = 1;
-        $failuresNum = 0;
-        $firstFailure = null;
-        $lockExpires = null;
 
         // prepare the date format for the created at/updated at dates
-        $dob = $this->getValue(ColumnKeys::DOB, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
-        $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
+        $vatRequestDate = $this->getValue(ColumnKeys::VAT_REQUEST_DATE, date('Y-m-d H:i:s'), array($this, 'formatDate'));
 
         // return the prepared customer
         return $this->initializeEntity(
             array(
-                MemberNames::WEBSITE_ID                => $websiteId,
-                MemberNames::EMAIL                     => $email,
-                MemberNames::GROUP_ID                  => $groupId,
-                MemberNames::INCREMENT_ID              => $incrementId,
-                MemberNames::STORE_ID                  => $storeId,
-                MemberNames::CREATED_AT                => $createdAt,
-                MemberNames::UPDATED_AT                => $updatedAt,
-                MemberNames::IS_ACTIVE                 => $isActive,
-                MemberNames::DISABLE_AUTO_GROUP_CHANGE => $disableAutoGroupChange,
-                MemberNames::CREATED_IN                => $createdIn,
-                MemberNames::PREFIX                    => $prefix,
-                MemberNames::FIRSTNAME                 => $firstname,
-                MemberNames::MIDDLENAME                => $middlename,
-                MemberNames::LASTNAME                  => $lastname,
-                MemberNames::SUFFIX                    => $suffix,
-                MemberNames::DOB                       => $dob,
-                MemberNames::PASSWORD_HASH             => $passwordHash,
-                MemberNames::RP_TOKEN                  => $rpToken,
-                MemberNames::RP_TOKEN_CREATED_AT       => $rpTokenCreatedAt,
-                MemberNames::DEFAULT_BILLING           => $defaultBilling,
-                MemberNames::DEFAULT_SHIPPING          => $defaultShipping,
-                MemberNames::TAXVAT                    => $taxvat,
-                MemberNames::CONFIRMATION              => $confirmation,
-                MemberNames::FAILURES_NUM              => $failuresNum,
-                MemberNames::FIRST_FAILURE             => $firstFailure,
-                MemberNames::LOCK_EXPIRES              => $lockExpires
+                MemberNames::INCREMENT_ID        => $incrementId,
+                MemberNames::PARENT_ID           => $parentId,
+                MemberNames::CREATED_AT          => $createdAt,
+                MemberNames::UPDATED_AT          => $updatedAt,
+                MemberNames::IS_ACTIVE           => $isActive,
+                MemberNames::CITY                => $city,
+                MemberNames::COMPANY             => $company,
+                MemberNames::COUNTRY_ID          => $countryId,
+                MemberNames::FAX                 => $fax,
+                MemberNames::FIRSTNAME           => $firstname,
+                MemberNames::LASTNAME            => $lastname,
+                MemberNames::MIDDLENAME          => $middlename,
+                MemberNames::POSTCODE            => $postcode,
+                MemberNames::PREFIX              => $prefix,
+                MemberNames::REGION              => $region,
+                MemberNames::REGION_ID           => $regionId,
+                MemberNames::STREET              => $street,
+                MemberNames::SUFFIX              => $suffix,
+                MemberNames::TELEPHONE           => $telephone,
+                MemberNames::VAT_ID              => $vatId,
+                MemberNames::VAT_IS_VALID        => $vatIsValid,
+                MemberNames::VAT_REQUEST_DATE    => $vatRequestDate,
+                MemberNames::VAT_REQUEST_ID      => $vatRequestId,
+                MemberNames::VAT_REQUEST_SUCCESS => $vatRequestSuccess
             )
         );
     }
 
     /**
-     * Initialize the customer with the passed attributes and returns an instance.
+     * Initialize the customer address with the passed attributes and returns an instance.
      *
-     * @param array $attr The customer attributes
+     * @param array $attr The customer address attributes
      *
-     * @return array The initialized customer
+     * @return array The initialized customer address
      */
-    protected function initializeCustomer(array $attr)
+    protected function initializeCustomerAddress(array $attr)
     {
-
-        // load the customer with the passed SKU and merge it with the attributes
-        if ($entity = $this->loadCustomerByEmailAndWebsiteId($attr[MemberNames::EMAIL], $attr[MemberNames::WEBSITE_ID])) {
-            return $this->mergeEntity($entity, $attr);
-        }
-
-        // otherwise simply return the attributes
         return $attr;
     }
 
@@ -193,25 +178,15 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     }
 
     /**
-     * Persist's the passed customer data and return's the ID.
+     * Persist's the passed customer address data and return's the ID.
      *
-     * @param array $customer The customer data to persist
+     * @param array $customerAddress The customer address data to persist
      *
      * @return string The ID of the persisted entity
      */
-    protected function persistCustomer($customer)
+    protected function persistCustomerAddress($customerAddress)
     {
-        return $this->getCustomerAddressBunchProcessor()->persistCustomer($customer);
-    }
-
-    /**
-     * Return's the attribute set of the product that has to be created.
-     *
-     * @return array The attribute set
-     */
-    protected function getAttributeSet()
-    {
-        return $this->getSubject()->getAttributeSet();
+        return $this->getCustomerAddressBunchProcessor()->persistCustomerAddress($customerAddress);
     }
 
     /**
@@ -224,5 +199,18 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function setLastEntityId($lastEntityId)
     {
         $this->getSubject()->setLastEntityId($lastEntityId);
+    }
+
+    /**
+     * Return's the store website for the passed code.
+     *
+     * @param string $code The code of the store website to return the ID for
+     *
+     * @return integer The store website ID
+     * @throws \Exception Is thrown, if the store website with the requested code is not available
+     */
+    protected function getStoreWebsiteIdByCode($code)
+    {
+        return $this->getSubject()->getStoreWebsiteIdByCode($code);
     }
 }

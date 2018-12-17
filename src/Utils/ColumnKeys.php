@@ -29,175 +29,110 @@ namespace TechDivision\Import\Customer\Address\Utils;
  * @link      https://github.com/techdivision/import-customer-address
  * @link      http://www.techdivision.com
  */
-class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
+class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
 {
 
     /**
-     * Name for the column 'website_id'.
+     * Name for the column 'entity_id'.
      *
      * @var string
      */
-    const WEBSITE_ID = 'website_id';
+    const ENTITY_ID = '_entity_id';
 
     /**
-     * Name for the column 'store_id'.
+     * Name for the column 'city'.
      *
      * @var string
      */
-    const STORE_ID = 'store_id';
+    const CITY = 'city';
 
     /**
-     * Name for the column 'group_id'.
+     * Name for the column 'company'.
      *
      * @var string
      */
-    const GROUP_ID = 'group_id';
+    const COMPANY = 'company';
 
     /**
-     * Name for the column 'created_in'.
+     * Name for the column 'country_id'.
      *
      * @var string
      */
-    const CREATED_IN = 'created_in';
+    const COUNTRY_ID = 'country_id';
 
     /**
-     * Name for the column 'created_at'.
+     * Name for the column 'fax'.
      *
      * @var string
      */
-    const CREATED_AT = 'created_at';
+    const FAX = 'fax';
 
     /**
-     * Name for the column 'updated_at'.
+     * Name for the column 'postcode'.
      *
      * @var string
      */
-    const UPDATED_AT = 'updated_at';
+    const POSTCODE = 'postcode';
 
     /**
-     * Name for the column 'email'.
+     * Name for the column 'region'.
      *
      * @var string
      */
-    const EMAIL = 'email';
+    const REGION = 'region';
 
     /**
-     * Name for the column 'confirmation'.
+     * Name for the column 'region_id'.
      *
      * @var string
      */
-    const CONFIRMATION = 'confirmation';
+    const REGION_ID = 'region_id';
 
     /**
-     * Name for the column 'prefix'.
+     * Name for the column 'telephone'.
      *
      * @var string
      */
-    const PREFIX = 'prefix';
+    const TELEPHONE = 'telephone';
 
     /**
-     * Name for the column 'suffix'.
+     * Name for the column 'vat_id'.
      *
      * @var string
      */
-    const SUFFIX = 'suffix';
+    const VAT_ID = 'vat_id';
 
     /**
-     * Name for the column 'disable_auto_group_change'.
+     * Name for the column 'vat_is_valid'.
      *
      * @var string
      */
-    const DISABLE_AUTO_GROUP_CHANGE = 'disable_auto_group_change';
+    const VAT_IS_VALID = 'vat_is_valid';
 
     /**
-     * Name for the column 'dob'.
+     * Name for the column 'vat_request_date'.
      *
      * @var string
      */
-    const DOB = 'dob';
+    const VAT_REQUEST_DATE = 'vat_request_date';
 
     /**
-     * Name for the column 'firstname'.
+     * Name for the column 'vat_request_id'.
      *
      * @var string
      */
-    const FIRSTNAME = 'firstname';
+    const VAT_REQUEST_ID = 'vat_request_id';
 
     /**
-     * Name for the column 'lastname'.
+     * Name for the column 'vat_request_success'.
      *
      * @var string
      */
-    const LASTNAME = 'lastname';
-
-    /**
-     * Name for the column 'gender'.
-     *
-     * @var string
-     */
-    const GENDER = 'gender';
-
-    /**
-     * Name for the column 'middlename'.
-     *
-     * @var string
-     */
-    const MIDDLENAME = 'middlename';
-
-    /**
-     * Name for the column 'password_hash'.
-     *
-     * @var string
-     */
-    const PASSWORD_HASH = 'password_hash';
-
-    /**
-     * Name for the column 'password'.
-     *
-     * @var string
-     */
-    const PASSWORD = 'password';
-
-    /**
-     * Name for the column 'rp_token'.
-     *
-     * @var string
-     */
-    const RP_TOKEN = 'rp_token';
-
-    /**
-     * Name for the column 'rp_token_created_at'.
-     *
-     * @var string
-     */
-    const RP_TOKEN_CREATED_AT = 'rp_token_created_at';
-
-    /**
-     * Name for the column 'taxvat'.
-     *
-     * @var string
-     */
-    const TAXVAT = 'taxvat';
-
-    /**
-     * Name for the column '_website'.
-     *
-     * @var string
-     */
-    const WEBSITE = '_website';
-
-    /**
-     * Name for the column '_store'.
-     *
-     * @var string
-     */
-    const STORE = '_store';
-
-    /**
-     * Name for the column '_address_city'.
-     *
-     * @var string
-     */
+    const VAT_REQUEST_SUCCESS = 'vat_request_success';    /**
+    * Name for the column '_address_city'.
+    *
+    * @var string
+    */
     const ADDRESS_CITY = '_address_city';
 
     /**
