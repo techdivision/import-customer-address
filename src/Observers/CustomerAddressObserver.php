@@ -169,6 +169,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
             return $this->mergeEntity($entity, $attr);
         }
 
+        // remove the entity ID
         unset($attr[MemberNames::ENTITY_ID]);
 
         // simply return the attributes
