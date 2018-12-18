@@ -134,6 +134,25 @@ interface CustomerAddressBunchProcessorInterface extends CustomerAddressProcesso
     public function loadEavAttributeOptionValueByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value);
 
     /**
+     * Return's the customer with the passed entity ID.
+     *
+     * @param integer $id The entity ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerAddress($id);
+
+    /**
+     * Return's the customer with the passed email and website ID.
+     *
+     * @param string $email     The email of the customer to return
+     * @param string $websiteId The website ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerByEmailAndWebsiteId($email, $websiteId);
+
+    /**
      * Persist's the passed customer address data and return's the ID.
      *
      * @param array       $customer The customer data to persist

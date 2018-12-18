@@ -520,6 +520,18 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     }
 
     /**
+     * Return's the customer with the passed entity ID.
+     *
+     * @param integer $id The entity ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerAddress($id)
+    {
+        return $this->getCustomerAddressRepository()->load($id);
+    }
+
+    /**
      * Return's the customer with the passed email and website ID.
      *
      * @param string $email     The email of the customer to return
