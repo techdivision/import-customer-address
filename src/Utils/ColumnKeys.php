@@ -33,6 +33,13 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
 {
 
     /**
+     * Name for the column 'email'.
+     *
+     * @var string
+     */
+    const EMAIL = '_email';
+
+    /**
      * Name for the column 'entity_id'.
      *
      * @var string

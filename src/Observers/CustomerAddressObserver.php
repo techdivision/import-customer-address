@@ -93,6 +93,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         $customer = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
 
         // initialize the customer values
+        $entityId = $this->getValue(ColumnKeys::ENTITY_ID);
         $city = $this->getValue(ColumnKeys::CITY);
         $company = $this->getValue(ColumnKeys::COMPANY);
         $countryId = $this->getValue(ColumnKeys::COUNTRY_ID);
@@ -124,6 +125,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // return the prepared customer
         return $this->initializeEntity(
             array(
+                MemberNames::ENTITY_ID           => $entityId,
                 MemberNames::INCREMENT_ID        => $incrementId,
                 MemberNames::PARENT_ID           => $customer[MemberNames::ENTITY_ID],
                 MemberNames::CREATED_AT          => $createdAt,
@@ -161,7 +163,28 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      */
     protected function initializeCustomerAddress(array $attr)
     {
+
+        // try to load the customer address with the given entity ID
+        if ($entity = $this->loadCustomerAddress($attr[MemberNames::ENTITY_ID])) {
+            return $this->mergeEntity($entity, $attr);
+        }
+
+        unset($attr[MemberNames::ENTITY_ID]);
+
+        // simply return the attributes
         return $attr;
+    }
+
+    /**
+     * Return's the customer with the passed entity ID.
+     *
+     * @param integer $id The entity ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    protected function loadCustomerAddress($id)
+    {
+        return $this->getCustomerAddressBunchProcessor()->loadCustomerAddress($id);
     }
 
     /**

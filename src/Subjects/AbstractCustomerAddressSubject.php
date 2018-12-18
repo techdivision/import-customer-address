@@ -150,7 +150,7 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
         list ($email, $website) = $identifier;
 
         // query whether or not the store view code has already been mapped to the customer identifier
-        return isset($this->customerIdentifierEntityIdMapping[$email][$website]) && isset($this->customerIdentifierEntityIdMapping[$email][$website]) && in_array($storeViewCode, $this->skuStoreViewCodeMapping[$email][$website]);
+        return isset($this->customerIdentifierEntityIdMapping[$email][$website]) && $this->customerIdentifierEntityIdMapping[$email][$website] === $storeViewCode;
     }
 
     /**
