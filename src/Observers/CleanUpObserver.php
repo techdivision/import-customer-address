@@ -70,18 +70,11 @@ class CleanUpObserver extends AbstractCustomerAddressImportObserver
     protected function process()
     {
 
-        // load email and website code
-        $email = $this->getValue(ColumnKeys::EMAIL);
-        $website = $this->getValue(ColumnKeys::WEBSITE);
-
-        // add the customer identifier => entity ID mapping
-        $this->addCustomerIdentifierEntityIdMapping($email, $website);
-
         // clean-up the repositories etc. to free memory
         $this->getCustomerAddressBunchProcessor()->cleanUp();
 
-        // temporary persist the last customer identifier
-        $this->setLastIdentifier(array($email, $website));
+        // temporary persist the last customer address entity ID
+        $this->setLastEntityId($this->getValue(ColumnKeys::ENTITY_ID));
     }
 
     /**
@@ -92,20 +85,20 @@ class CleanUpObserver extends AbstractCustomerAddressImportObserver
      *
      * @return void
      */
-    public function addCustomerIdentifierEntityIdMapping($email, $website)
+    protected function addCustomerIdentifierEntityIdMapping($email, $website)
     {
         $this->getSubject()->addCustomerIdentifierEntityIdMapping($email, $website);
     }
 
     /**
-     * Sets the customer identifier of the last imported customer.
+     * Set's the ID of the customer address that has been created recently.
      *
-     * @param array $identifier The unique customer identifier
+     * @param string $lastEntityId The entity ID
      *
      * @return void
      */
-    protected function setLastIdentifier(array $identifier)
+    protected function setLastEntityId($lastEntityId)
     {
-        $this->getSubject()->setLastIdentifier($identifier);
+        $this->getSubject()->setLastEntityId($lastEntityId);
     }
 }

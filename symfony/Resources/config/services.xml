@@ -176,6 +176,9 @@
         <service id="import_customer_address.observer.export.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressExportObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
+        <service id="import_customer_address.observer.clear.customer.address" class="TechDivision\Import\Customer\Address\Observers\ClearCustomerAddressObserver">
+            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
+        </service>
 
         <service id="import_customer_address.subject.bunch" class="TechDivision\Import\Customer\Address\Subjects\BunchSubject" shared="false">
             <argument type="service" id="import.processor.registry"/>

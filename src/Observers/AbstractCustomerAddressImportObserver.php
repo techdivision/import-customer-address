@@ -76,18 +76,6 @@ abstract class AbstractCustomerAddressImportObserver extends AbstractObserver im
     }
 
     /**
-     * Queries whether or not the customer with the passed identifier has already been processed.
-     *
-     * @param array $identifier The customer identifier to check been processed
-     *
-     * @return boolean TRUE if the customer identifier has been processed, else FALSE
-     */
-    protected function hasBeenProcessed(array $identifier)
-    {
-        return $this->getSubject()->hasBeenProcessed($identifier);
-    }
-
-    /**
      * Queries whether or not the passed customer identifier and store view code has already been processed.
      *
      * @param array  $identifier    The customer identifier to check been processed
@@ -101,14 +89,14 @@ abstract class AbstractCustomerAddressImportObserver extends AbstractObserver im
     }
 
     /**
-     * Return's TRUE if the passed customer identifier is the actual one.
+     * Return's TRUE if the passed entity ID is the actual one.
      *
-     * @param array $identifier The customer identifier to check
+     * @param integer $entityId The customer address entity ID to check
      *
-     * @return boolean TRUE if the passed customer identifier is the actual one
+     * @return boolean TRUE if the passed customer address entity ID is the actual one
      */
-    protected function isLastIdentifier(array $identifier)
+    protected function isLastEntityId($entityId)
     {
-        return $this->getSubject()->getLastIdentifier() === $identifier;
+        return $this->getSubject()->getLastEntityId() === $entityId;
     }
 }

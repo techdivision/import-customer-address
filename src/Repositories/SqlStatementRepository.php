@@ -156,8 +156,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS =>
              'DELETE
                 FROM customer_address_entity
-               WHERE website_id = :website_id
-                 AND email = :email',
+               WHERE entity_id = :entity_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_DATETIME =>
             'INSERT
                INTO customer_address_entity_datetime

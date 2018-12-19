@@ -80,11 +80,14 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         // initialize the array for the links
         $artefacts = array();
 
+        // load the email with the column keys of the customer-address CSV file
+        $email = $this->getValue(\TechDivision\Import\Customer\Utils\ColumnKeys::EMAIL);
+
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID        => null,
+                ColumnKeys::EMAIL            => $email,
                 ColumnKeys::WEBSITE          => $this->getValue(ColumnKeys::WEBSITE),
-                ColumnKeys::EMAIL            => $this->getValue(ColumnKeys::EMAIL),
                 ColumnKeys::CITY             => $this->getValue(ColumnKeys::ADDRESS_CITY),
                 ColumnKeys::COMPANY          => $this->getValue(ColumnKeys::ADDRESS_COMPANY),
                 ColumnKeys::COUNTRY_ID       => $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID),
