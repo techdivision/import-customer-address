@@ -132,7 +132,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Initialize the processor with the necessary assembler and repository instances.
      *
-     * @param \TechDivision\Import\Connection\ConnectionInterface                                         connection                         The connection to use
+     * @param \TechDivision\Import\Connection\ConnectionInterface                                         $connection                        The connection to use
      * @param \TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssemblerInterface $customerAddressAttributeAssembler The customer address attribute assembler to use
      * @param \TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface                $eavAttributeOptionValueRepository The EAV attribute option value repository to use
      * @param \TechDivision\Import\Repositories\EavAttributeRepositoryInterface                           $eavAttributeRepository            The EAV attribute repository to use
