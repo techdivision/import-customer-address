@@ -155,8 +155,8 @@ interface CustomerAddressBunchProcessorInterface extends CustomerAddressProcesso
     /**
      * Persist's the passed customer address data and return's the ID.
      *
-     * @param array       $customer The customer data to persist
-     * @param string|null $name    The name of the prepared statement that has to be executed
+     * @param array       $customerAddress The customer address data to persist
+     * @param string|null $name            The name of the prepared statement that has to be executed
      *
      * @return string The ID of the persisted entity
      */
