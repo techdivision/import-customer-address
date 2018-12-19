@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Customer\Address\Observers\ClearCustomerObserver
+ * TechDivision\Import\Customer\Address\Observers\ClearCustomerAddressObserver
  *
  * NOTICE OF LICENSE
  *
@@ -33,7 +33,7 @@ use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorI
  * @link      https://github.com/techdivision/import-customer-address
  * @link      http://www.techdivision.com
  */
-class ClearCustomerObserver extends AbstractCustomerAddressImportObserver
+class ClearCustomerAddressObserver extends AbstractCustomerAddressImportObserver
 {
 
     /**
@@ -71,19 +71,18 @@ class ClearCustomerObserver extends AbstractCustomerAddressImportObserver
     protected function process()
     {
 
-        // load email and website code
-        $email = $this->getValue(ColumnKeys::EMAIL);
-        $website = $this->getValue(ColumnKeys::WEBSITE);
+        // load the entity ID
+        ;
 
-        // query whether or not, we've found a new SKU => means we've found a new customer
-        if ($this->isLastIdentifier($identifier = array(MemberNames::EMAIL => $email, MemberNames::WEBSITE => $website))) {
+        // query whether or not, we've found a new entity ID => means we've found a new customer address
+        if ($this->isLastEntityId($entityId = $this->getValue(ColumnKeys::ENTITY_ID))) {
             return;
         }
 
-        // delete the customer with the passed SKU
-        $this->deleteCustomerAddress($identifier);
+        // delete the customer address with the passed entity ID
+        $this->deleteCustomerAddress(array(MemberNames::ENTITY_ID => $entityId));
 
-        // flush the cache to remove the deleted customer (which has previously been cached)
+        // flush the cache to remove the deleted customer address (which has previously been cached)
         $this->getCustomerAddressBunchProcessor()->cleanUp();
     }
 
@@ -97,6 +96,6 @@ class ClearCustomerObserver extends AbstractCustomerAddressImportObserver
      */
     protected function deleteCustomerAddress($row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomer($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddress($row, $name);
     }
 }
