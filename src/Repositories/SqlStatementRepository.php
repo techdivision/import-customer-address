@@ -162,17 +162,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_address_entity_datetime
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
             VALUES (:entity_id,
                     :attribute_id,
-                    :store_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DATETIME =>
             'UPDATE customer_address_entity_datetime
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DATETIME =>
@@ -184,17 +181,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_address_entity_decimal
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
             VALUES (:entity_id,
                     :attribute_id,
-                    :store_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DECIMAL =>
             'UPDATE customer_address_entity_decimal
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DECIMAL =>
@@ -206,17 +200,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_address_entity_int
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_INT =>
             'UPDATE customer_address_entity_int
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_INT =>
@@ -228,17 +219,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_address_entity_varchar
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_VARCHAR =>
             'UPDATE customer_address_entity_varchar
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_VARCHAR =>
@@ -250,17 +238,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_address_entity_text
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_TEXT =>
             'UPDATE customer_address_entity_text
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_TEXT =>
