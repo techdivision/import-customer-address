@@ -1,3 +1,13 @@
+# Version 2.0.1
+
+## Bugfixes
+
+* Replace persist/delete Method calls in CustomerAddressAttributeObserver with customer address specific versions
+
+## Features
+
+* None
+
 # Version 2.0.0
 
 ## Bugfixes

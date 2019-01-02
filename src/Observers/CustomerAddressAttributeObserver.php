@@ -182,7 +182,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function persistVarcharAttribute($attribute)
     {
-        $this->getCustomerAddressBunchProcessor()->persistCustomerVarcharAttribute($attribute);
+        $this->getCustomerAddressBunchProcessor()->persistCustomerAddressVarcharAttribute($attribute);
     }
 
     /**
@@ -194,7 +194,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function persistIntAttribute($attribute)
     {
-        $this->getCustomerAddressBunchProcessor()->persistCustomerIntAttribute($attribute);
+        $this->getCustomerAddressBunchProcessor()->persistCustomerAddressIntAttribute($attribute);
     }
 
     /**
@@ -206,7 +206,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function persistDecimalAttribute($attribute)
     {
-        $this->getCustomerAddressBunchProcessor()->persistCustomerDecimalAttribute($attribute);
+        $this->getCustomerAddressBunchProcessor()->persistCustomerAddressDecimalAttribute($attribute);
     }
 
     /**
@@ -218,7 +218,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function persistDatetimeAttribute($attribute)
     {
-        $this->getCustomerAddressBunchProcessor()->persistCustomerDatetimeAttribute($attribute);
+        $this->getCustomerAddressBunchProcessor()->persistCustomerAddressDatetimeAttribute($attribute);
     }
 
     /**
@@ -230,7 +230,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function persistTextAttribute($attribute)
     {
-        $this->getCustomerAddressBunchProcessor()->persistCustomerTextAttribute($attribute);
+        $this->getCustomerAddressBunchProcessor()->persistCustomerAddressTextAttribute($attribute);
     }
 
     /**
@@ -243,7 +243,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function deleteDatetimeAttribute(array $row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomerDatetimeAttribute($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddressDatetimeAttribute($row, $name);
     }
 
     /**
@@ -256,7 +256,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function deleteDecimalAttribute(array $row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomerDecimalAttribute($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddressDecimalAttribute($row, $name);
     }
 
     /**
@@ -269,7 +269,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function deleteIntAttribute(array $row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomerIntAttribute($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddressIntAttribute($row, $name);
     }
 
     /**
@@ -282,7 +282,7 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function deleteTextAttribute(array $row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomerTextAttribute($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddressTextAttribute($row, $name);
     }
 
     /**
@@ -295,6 +295,6 @@ class CustomerAddressAttributeObserver extends AbstractAttributeObserver
      */
     protected function deleteVarcharAttribute(array $row, $name = null)
     {
-        $this->getCustomerAddressBunchProcessor()->deleteCustomerVarcharAttribute($row, $name);
+        $this->getCustomerAddressBunchProcessor()->deleteCustomerAddressVarcharAttribute($row, $name);
     }
 }
