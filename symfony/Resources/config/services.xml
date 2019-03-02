@@ -150,6 +150,7 @@
             <argument type="service" id="import.repository.eav.attribute"/>
             <argument type="service" id="import_customer.repository.customer"/>
             <argument type="service" id="import_customer_address.repository.customer.address"/>
+            <argument type="service" id="import.repository.eav.entity.type"/>
             <argument type="service" id="import_customer_address.action.customer.address"/>
             <argument type="service" id="import_customer_address.action.customer.address.datetime"/>
             <argument type="service" id="import_customer_address.action.customer.address.decimal"/>
@@ -170,25 +171,17 @@
         <service id="import_customer_address.observer.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
-        <service id="import_customer_address.observer.last.entity.id" class="TechDivision\Import\Customer\Address\Observers\LastEntityIdObserver">
-            <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
-        </service>
         <service id="import_customer_address.observer.export.customer.address" class="TechDivision\Import\Customer\Address\Observers\CustomerAddressExportObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
         <service id="import_customer_address.observer.clear.customer.address" class="TechDivision\Import\Customer\Address\Observers\ClearCustomerAddressObserver">
             <argument type="service" id="import_customer_address.processor.customer.address.bunch"/>
         </service>
-
         <service id="import_customer_address.observer.default.billing.address" class="TechDivision\Import\Customer\Address\Observers\DefaultBillingAddressImportObserver">
             <argument type="service" id="import_customer.processor.customer.bunch" />
-            <argument type="service" id="import_customer_address.repository.customer.address" />
-            <argument type="service" id="import_customer.action.customer" />
         </service>
         <service id="import_customer_address.observer.default.shipping.address" class="TechDivision\Import\Customer\Address\Observers\DefaultShippingAddressImportObserver">
             <argument type="service" id="import_customer.processor.customer.bunch" />
-            <argument type="service" id="import_customer_address.repository.customer.address" />
-            <argument type="service" id="import_customer.action.customer" />
         </service>
 
         <service id="import_customer_address.subject.bunch" class="TechDivision\Import\Customer\Address\Subjects\BunchSubject" shared="false">

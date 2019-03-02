@@ -32,6 +32,7 @@ use TechDivision\Import\Customer\Address\Actions\CustomerAddressVarcharActionInt
 use TechDivision\Import\Customer\Address\Actions\CustomerAddressDecimalActionInterface;
 use TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeActionInterface;
 use TechDivision\Import\Customer\Address\Repositories\CustomerAddressRepositoryInterface;
+use TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface;
 
 /**
  * The customer address bunch processor implementation.
@@ -79,6 +80,13 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * @var \TechDivision\Import\Repositories\EavAttributeRepositoryInterface
      */
     protected $eavAttributeRepository;
+
+    /**
+     * The repository to access EAV attributes.
+     *
+     * @var \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface
+     */
+    protected $eavEntityTypeRepository;
 
     /**
      * The action for customer address CRUD methods.
@@ -138,6 +146,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * @param \TechDivision\Import\Repositories\EavAttributeRepositoryInterface                           $eavAttributeRepository            The EAV attribute repository to use
      * @param \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface                      $customerRepository                The customer repository to use
      * @param \TechDivision\Import\Customer\Address\Repositories\CustomerAddressRepositoryInterface       $customerAddressRepository         The customer address repository to use
+     * @param \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface                          $eavEntityTypeRepository           The EAV entity type repository to use
      * @param \TechDivision\Import\Customer\Address\Actions\CustomerAddressActionInterface                $customerAddressAction             The customer address action to use
      * @param \TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeActionInterface        $customerAddressDatetimeAction     The customer address datetime action to use
      * @param \TechDivision\Import\Customer\Address\Actions\CustomerAddressDecimalActionInterface         $customerAddressDecimalAction      The customer address decimal action to use
@@ -152,6 +161,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
         EavAttributeRepositoryInterface $eavAttributeRepository,
         CustomerRepositoryInterface $customerRepository,
         CustomerAddressRepositoryInterface $customerAddressRepository,
+        EavEntityTypeRepositoryInterface $eavEntityTypeRepository,
         CustomerAddressActionInterface $customerAddressAction,
         CustomerAddressDatetimeActionInterface $customerAddressDatetimeAction,
         CustomerAddressDecimalActionInterface $customerAddressDecimalAction,
@@ -460,6 +470,28 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     }
 
     /**
+     * Set's the repository to access EAV entity types.
+     *
+     * @param \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface $eavEntityTypeRepository The repository to access EAV entity types
+     *
+     * @return void
+     */
+    public function setEavEntityTypeRepository(EavEntityTypeRepositoryInterface $eavEntityTypeRepository)
+    {
+        $this->eavEntityTypeRepository = $eavEntityTypeRepository;
+    }
+
+    /**
+     * Return's the repository to access EAV entity types.
+     *
+     * @return \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface The repository instance
+     */
+    public function getEavEntityTypeRepository()
+    {
+        return $this->eavAttributeRepository;
+    }
+
+    /**
      * Set's the assembler to load the customer address attributes with.
      *
      * @param \TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssemblerInterface $customerAddressAttributeAssembler The assembler instance
@@ -513,10 +545,39 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * @param string  $value         The value of the attribute option to load
      *
      * @return array The EAV attribute option value
+     * @deprecated Since 4.0.0
+     * @see \TechDivision\Import\Services\EavAwareProcessorInterface::loadAttributeOptionValueByEntityTypeIdAndAttributeCodeAndStoreIdAndValue()
      */
     public function loadEavAttributeOptionValueByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value)
     {
         return $this->getEavAttributeOptionValueRepository()->findOneByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value);
+    }
+
+    /**
+     * Load's and return's the EAV attribute option value with the passed entity type ID, code, store ID and value.
+     *
+     * @param string  $entityTypeId  The entity type ID of the EAV attribute to load the option value for
+     * @param string  $attributeCode The code of the EAV attribute option to load
+     * @param integer $storeId       The store ID of the attribute option to load
+     * @param string  $value         The value of the attribute option to load
+     *
+     * @return array The EAV attribute option value
+     */
+    public function loadAttributeOptionValueByEntityTypeIdAndAttributeCodeAndStoreIdAndValue($entityTypeId, $attributeCode, $storeId, $value)
+    {
+        return $this->getEavAttributeOptionValueRepository()->findOneByEntityTypeIdAndAttributeCodeAndStoreIdAndValue($entityTypeId, $attributeCode, $storeId, $value);
+    }
+
+    /**
+     * Return's an EAV entity type with the passed entity type code.
+     *
+     * @param string $entityTypeCode The code of the entity type to return
+     *
+     * @return array The entity type with the passed entity type code
+     */
+    public function loadEavEntityTypeByEntityTypeCode($entityTypeCode)
+    {
+        return $this->getEavEntityTypeRepository()->findOneByEntityTypeCode($entityTypeCode);
     }
 
     /**
