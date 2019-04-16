@@ -97,16 +97,7 @@
               "observers": [
                 {
                   "import": [
-                    "import_customer_address.observer.clear.customer.address",
-                    "import_customer_address.observer.customer.address",
-                    "import_customer_address.observer.customer.address.attribute",
-                    "import_customer_address.observer.default.billing.address",
-                    "import_customer_address.observer.default.shipping.address"
-                  ]
-                },
-                {
-                  "post-import": [
-                    "import_customer_address.observer.clean.up"
+                    "import_customer_address.observer.composite.replace"
                   ]
                 }
               ]
@@ -147,15 +138,7 @@
               "observers": [
                 {
                   "import": [
-                    "import_customer_address.observer.customer.address",
-                    "import_customer_address.observer.customer.address.attribute.update",
-                    "import_customer_address.observer.default.billing.address",
-                    "import_customer_address.observer.default.shipping.address"
-                  ]
-                },
-                {
-                  "post-import": [
-                    "import_customer_address.observer.clean.up"
+                    "import_customer_address.observer.composite.add_update"
                   ]
                 }
               ]

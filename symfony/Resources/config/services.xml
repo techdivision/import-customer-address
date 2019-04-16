@@ -104,32 +104,32 @@
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
         </service>
 
-        <service id="import_customer_address.action.customer.address" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressAction">
+        <service id="import_customer_address.action.customer.address" class="TechDivision\Import\Actions\GenericIdentifierAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.delete"/>
         </service>
-        <service id="import_customer_address.action.customer.address.datetime" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeAction">
+        <service id="import_customer_address.action.customer.address.datetime" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.delete"/>
         </service>
-        <service id="import_customer_address.action.customer.address.decimal" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressDecimalAction">
+        <service id="import_customer_address.action.customer.address.decimal" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.decimal.delete"/>
         </service>
-        <service id="import_customer_address.action.customer.address.int" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressIntAction">
+        <service id="import_customer_address.action.customer.address.int" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.int.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.int.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.int.delete"/>
         </service>
-        <service id="import_customer_address.action.customer.address.text" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressTextAction">
+        <service id="import_customer_address.action.customer.address.text" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.text.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.text.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.text.delete"/>
         </service>
-        <service id="import_customer_address.action.customer.address.varchar" class="TechDivision\Import\Customer\Address\Actions\CustomerAddressVarcharAction">
+        <service id="import_customer_address.action.customer.address.varchar" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.varchar.delete"/>
@@ -182,6 +182,51 @@
         </service>
         <service id="import_customer_address.observer.default.shipping.address" class="TechDivision\Import\Customer\Address\Observers\DefaultShippingAddressImportObserver">
             <argument type="service" id="import_customer.processor.customer.bunch" />
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer address replace operation.
+         |-->
+        <service id="import_customer_address.observer.composite.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.clear.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="mport_customer_address.observer.customer.address.attribute" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.billing.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.clean.up"" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer address add-update operation.
+         |-->
+        <service id="import_customer_address.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="mport_customer_address.observer.customer.address.attribute.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.billing.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.clean.up"" type="service"/>
+            </call>
         </service>
 
         <service id="import_customer_address.subject.bunch" class="TechDivision\Import\Customer\Address\Subjects\BunchSubject" shared="false">

@@ -44,42 +44,42 @@ interface CustomerAddressBunchProcessorInterface extends CustomerAddressProcesso
     /**
      * Return's the action with the customer address CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressAction();
 
     /**
      * Return's the action with the customer address varchar attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressVarcharActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressVarcharAction();
 
     /**
      * Return's the action with the customer address text attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressTextActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressTextAction();
 
     /**
      * Return's the action with the customer address int attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressIntActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressIntAction();
 
     /**
      * Return's the action with the customer address decimal attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressDecimalActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressDecimalAction();
 
     /**
      * Return's the action with the customer address datetime attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Address\Actions\CustomerAddressDatetimeActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressDatetimeAction();
 
