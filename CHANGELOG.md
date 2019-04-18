@@ -1,3 +1,14 @@
+# Version 5.0.1
+
+## Bugfixes
+
+* Fixed issue in Symfony DI configuration
+* Update default configuration files with listeners
+
+## Features
+
+* None
+
 # Version 5.0.0
 
 ## Bugfixes

@@ -204,7 +204,7 @@
                 <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
             </call>
             <call method="addObserver">
-                <argument id="import_customer_address.observer.clean.up"" type="service"/>
+                <argument id="import_customer_address.observer.clean.up" type="service"/>
             </call>
         </service>
 
@@ -225,7 +225,7 @@
                 <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
             </call>
             <call method="addObserver">
-                <argument id="import_customer_address.observer.clean.up"" type="service"/>
+                <argument id="import_customer_address.observer.clean.up" type="service"/>
             </call>
         </service>
 
