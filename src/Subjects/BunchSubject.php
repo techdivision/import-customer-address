@@ -68,7 +68,7 @@ class BunchSubject extends AbstractCustomerAddressSubject implements ExportableS
 
         // update the status
         $registryProcessor->mergeAttributesRecursive(
-            $serial,
+            RegistryKeys::STATUS,
             array(
                 RegistryKeys::PRE_LOADED_ENTITY_IDS => $this->preLoadedEntityIds,
             )

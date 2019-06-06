@@ -99,7 +99,7 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
     {
 
         // load the status of the actual import
-        $status = $this->getRegistryProcessor()->getAttribute($serial);
+        $status = $this->getRegistryProcessor()->getAttribute(RegistryKeys::STATUS);
 
         // load the global data we've prepared initially
         $this->storeWebsites =  $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
