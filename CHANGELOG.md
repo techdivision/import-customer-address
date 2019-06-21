@@ -1,3 +1,13 @@
+# Version 9.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-customer 8.* version as dependency
+
 # Version 8.0.0
 
 ## Bugfixes
