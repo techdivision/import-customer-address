@@ -1,3 +1,13 @@
+# Version 9.0.1
+
+## Bugfixes
+
+* Fixed invalid observer ID in services.xml
+
+## Features
+
+* None
+
 # Version 9.0.0
 
 ## Bugfixes
