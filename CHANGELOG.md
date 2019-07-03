@@ -1,3 +1,13 @@
+# Version 10.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-customer 10.* version as dependency
+
 # Version 9.0.1
 
 ## Bugfixes
@@ -16,7 +26,7 @@
 
 ## Features
 
-* Switch to latest techdivision/import-customer 8.* version as dependency
+* Switch to latest techdivision/import-customer 9.* version as dependency
 
 # Version 8.0.0
 
