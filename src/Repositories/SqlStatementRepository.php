@@ -42,42 +42,42 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
     private $statements = array(
         SqlStatementKeys::CUSTOMER_ADDRESS =>
             'SELECT *
-               FROM customer_address_entity
+               FROM ${table:customer_address_entity}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESSES =>
             'SELECT *
-               FROM customer_address_entity',
+               FROM ${table:customer_address_entity}',
         SqlStatementKeys::CUSTOMER_ADDRESS_DATETIMES =>
             'SELECT *
-               FROM customer_address_entity_datetime
+               FROM ${table:customer_address_entity_datetime}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESS_DECIMALS =>
             'SELECT *
-               FROM customer_address_entity_decimal
+               FROM ${table:customer_address_entity_decimal}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESS_INTS =>
             'SELECT *
-               FROM customer_address_entity_int
+               FROM ${table:customer_address_entity_int}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESS_TEXTS =>
             'SELECT *
-               FROM customer_address_entity_text
+               FROM ${table:customer_address_entity_text}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESS_VARCHARS =>
             'SELECT *
-               FROM customer_address_entity_varchar
+               FROM ${table:customer_address_entity_varchar}
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_ADDRESS_VARCHAR_BY_ATTRIBUTE_CODE_AND_ENTITY_TYPE_ID_AND_VALUE =>
             'SELECT t1.*
-               FROM customer_address_entity_varchar t1,
-                    eav_attribute t2
+               FROM ${table:customer_address_entity_varchar} t1,
+                    ${table:eav_attribute} t2
               WHERE t2.attribute_code = :attribute_code
                 AND t2.entity_type_id = :entity_type_id
                 AND t1.attribute_id = t2.attribute_id
                 AND t1.value = :value',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS =>
             'INSERT
-               INTO customer_address_entity
+               INTO ${table:customer_address_entity}
                     (increment_id,
                      parent_id,
                      created_at,
@@ -127,7 +127,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      :vat_request_id,
                      :vat_request_success)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS =>
-             'UPDATE customer_address_entity
+             'UPDATE ${table:customer_address_entity}
                  SET increment_id = :increment_id,
                      parent_id = :parent_id,
                      created_at = :created_at,
@@ -155,11 +155,11 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                WHERE entity_id = :entity_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS =>
              'DELETE
-                FROM customer_address_entity
+                FROM ${table:customer_address_entity}
                WHERE entity_id = :entity_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_DATETIME =>
             'INSERT
-               INTO customer_address_entity_datetime
+               INTO ${table:customer_address_entity_datetime}
                     (entity_id,
                      attribute_id,
                      value)
@@ -167,18 +167,18 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                     :attribute_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DATETIME =>
-            'UPDATE customer_address_entity_datetime
+            'UPDATE ${table:customer_address_entity_datetime}
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DATETIME =>
             'DELETE
-               FROM customer_address_entity_datetime
+               FROM ${table:customer_address_entity_datetime}
               WHERE value_id = :value_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_DECIMAL =>
             'INSERT
-               INTO customer_address_entity_decimal
+               INTO ${table:customer_address_entity_decimal}
                     (entity_id,
                      attribute_id,
                      value)
@@ -186,18 +186,18 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                     :attribute_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DECIMAL =>
-            'UPDATE customer_address_entity_decimal
+            'UPDATE ${table:customer_address_entity_decimal}
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DECIMAL =>
             'DELETE
-               FROM customer_address_entity_decimal
+               FROM ${table:customer_address_entity_decimal}
               WHERE value_id = :value_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_INT =>
             'INSERT
-               INTO customer_address_entity_int
+               INTO ${table:customer_address_entity_int}
                     (entity_id,
                      attribute_id,
                      value)
@@ -205,18 +205,18 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      :attribute_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_INT =>
-            'UPDATE customer_address_entity_int
+            'UPDATE ${table:customer_address_entity_int}
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_INT =>
             'DELETE
-               FROM customer_address_entity_int
+               FROM ${table:customer_address_entity_int}
               WHERE value_id = :value_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_VARCHAR =>
             'INSERT
-               INTO customer_address_entity_varchar
+               INTO ${table:customer_address_entity_varchar}
                     (entity_id,
                      attribute_id,
                      value)
@@ -224,18 +224,18 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      :attribute_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_VARCHAR =>
-            'UPDATE customer_address_entity_varchar
+            'UPDATE ${table:customer_address_entity_varchar}
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_VARCHAR =>
             'DELETE
-               FROM customer_address_entity_varchar
+               FROM ${table:customer_address_entity_varchar}
               WHERE value_id = :value_id',
         SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_TEXT =>
             'INSERT
-               INTO customer_address_entity_text
+               INTO ${table:customer_address_entity_text}
                     (entity_id,
                      attribute_id,
                      value)
@@ -243,29 +243,29 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                      :attribute_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_TEXT =>
-            'UPDATE customer_address_entity_text
+            'UPDATE ${table:customer_address_entity_text}
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_TEXT =>
             'DELETE
-               FROM customer_address_entity_text
+               FROM ${table:customer_address_entity_text}
               WHERE value_id = :value_id',
     );
 
     /**
-     * Initialize the the SQL statements.
+     * Initializes the SQL statement repository with the primary key and table prefix utility.
+     *
+     * @param \IteratorAggregate<\TechDivision\Import\Utils\SqlCompilerInterface> $compilers The array with the compiler instances
      */
-    public function __construct()
+    public function __construct(\IteratorAggregate $compilers)
     {
 
-        // call the parent constructor
-        parent::__construct();
+        // pass primary key + table prefix utility to parent instance
+        parent::__construct($compilers);
 
-        // merge the class statements
-        foreach ($this->statements as $key => $statement) {
-            $this->preparedStatements[$key] = $statement;
-        }
+        // compile the SQL statements
+        $this->compile($this->statements);
     }
 }
