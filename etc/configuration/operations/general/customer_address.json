@@ -3,24 +3,30 @@
     "general": {
       "customer_address": {
         "delete": [
+          "general/general/initialize",
           "general/general/global-data",
           "general/general/move-files",
           "general/customer_address/delete",
-          "general/general/archive-artefacts"
+          "general/general/archive-artefacts",
+          "general/general/clean-up"
         ],
         "replace": [
+          "general/general/initialize",
           "general/general/global-data",
           "general/general/move-files",
           "general/general/cache-warmer",
           "general/customer_address/replace",
-          "general/general/archive-artefacts"
+          "general/general/archive-artefacts",
+          "general/general/clean-up"
         ],
         "add-update": [
+          "general/general/initialize",
           "general/general/global-data",
           "general/general/move-files",
           "general/general/cache-warmer",
           "general/customer_address/add-update",
-          "general/general/archive-artefacts"
+          "general/general/archive-artefacts",
+          "general/general/clean-up"
         ]
       }
     }
