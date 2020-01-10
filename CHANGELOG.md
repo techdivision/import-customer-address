@@ -1,3 +1,13 @@
+# Version 14.0.0
+
+## Bugfixes
+
+* Minor bugfixes and optimizations
+
+## Features
+
+* Switch to latest techdivision/import-customer 14.* version as dependency
+
 # Version 13.0.0
 
 ## Bugfixes
