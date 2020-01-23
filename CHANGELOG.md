@@ -1,3 +1,13 @@
+# Version 14.0.1
+
+## Bugfixes
+
+* Fixed typo in Symfony DI configuration
+
+## Features
+
+* None
+
 # Version 14.0.0
 
 ## Bugfixes
