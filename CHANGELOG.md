@@ -1,3 +1,13 @@
+# Version 12.0.1
+
+## Bugfixes
+
+* Fixed typo in Symfony DI configuration
+
+## Features
+
+* None
+
 # Version 12.0.0
 
 ## Bugfixes
