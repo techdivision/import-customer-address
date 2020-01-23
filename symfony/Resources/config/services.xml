@@ -197,7 +197,7 @@
                 <argument id="import_customer_address.observer.customer.address" type="service"/>
             </call>
             <call method="addObserver">
-                <argument id="mport_customer_address.observer.customer.address.attribute" type="service"/>
+                <argument id="import_customer_address.observer.customer.address.attribute" type="service"/>
             </call>
             <call method="addObserver">
                 <argument id="import_customer_address.observer.default.billing.address" type="service"/>
