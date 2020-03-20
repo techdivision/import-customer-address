@@ -1,3 +1,13 @@
+# Version 15.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-customer 15.* version as dependency
+
 # Version 14.0.2
 
 ## Bugfixes
