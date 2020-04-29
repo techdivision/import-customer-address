@@ -1,10 +1,11 @@
 {
     "name": "techdivision/import-customer-address",
-    "description": "M2IF library providing basic Magento 2 customer address import functionality",
+    "description": "Pacemaker library providing basic Magento 2 customer address import functionality",
     "license": "OSL-3.0",
     "require": {
         "php": ">=7.1.0",
-        "techdivision/import-customer": "15.*"
+        "techdivision/import": "16.x-dev as 15.2.1",
+        "techdivision/import-customer": "16.x-dev as 15.0.0"
     },
     "require-dev": {
         "doctrine/dbal": "2.5.*",
