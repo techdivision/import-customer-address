@@ -1,3 +1,13 @@
+# Version 16.0.1
+
+## Bugfixes
+
+* Fixed invalid date conversion
+
+## Features
+
+* None
+
 # Version 16.0.0
 
 ## Bugfixes
