@@ -2,7 +2,7 @@
 
 ## Bugfixes
 
-* Fixed invalid date conversion
+* Fixed import-customer-address#18
 
 ## Features
 
