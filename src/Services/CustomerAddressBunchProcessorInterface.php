@@ -130,17 +130,6 @@ interface CustomerAddressBunchProcessorInterface extends CustomerAddressProcesso
     public function getCustomerAddressAttributesByEntityId($entityId);
 
     /**
-     * Load's and return's the EAV attribute option value with the passed code, store ID and value.
-     *
-     * @param string  $attributeCode The code of the EAV attribute option to load
-     * @param integer $storeId       The store ID of the attribute option to load
-     * @param string  $value         The value of the attribute option to load
-     *
-     * @return array The EAV attribute option value
-     */
-    public function loadEavAttributeOptionValueByAttributeCodeAndStoreIdAndValue($attributeCode, $storeId, $value);
-
-    /**
      * Return's the customer with the passed entity ID.
      *
      * @param integer $id The entity ID of the customer to return

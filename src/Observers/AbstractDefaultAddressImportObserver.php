@@ -129,7 +129,7 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
                     $customer,
                     array(
                         $this->mapColumName($type) => $addressId,
-                        MemberNames::UPDATED_AT    => $this->formatDate(date('Y-m-d H:i:s'))
+                        MemberNames::UPDATED_AT    => $this->formatDate(date($this->getSourceDateFormat()))
                     )
                 )
             );

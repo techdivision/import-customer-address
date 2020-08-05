@@ -1,4 +1,44 @@
-# Version 12.0.1
+# Version 16.0.1
+
+## Bugfixes
+
+* Fixed import-customer-address#18
+
+## Features
+
+* None
+
+# Version 16.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-customer 16.* version as dependency
+
+# Version 15.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to latest techdivision/import-customer 15.* version as dependency
+
+# Version 14.0.2
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Extract dev autoloading
+
+# Version 14.0.1
 
 ## Bugfixes
 
@@ -7,6 +47,29 @@
 ## Features
 
 * None
+
+# Version 14.0.0
+
+## Bugfixes
+
+* Minor bugfixes and optimizations
+
+## Features
+
+* Switch to latest techdivision/import-customer 14.* version as dependency
+
+# Version 13.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Remove deprecated classes and methods
+* Add techdivision/import-cli-simple#216
+* Remove unnecessary identifiers from configuration
+* Switch to latest techdivision/import-customer 13.* version as dependency
 
 # Version 12.0.0
 
