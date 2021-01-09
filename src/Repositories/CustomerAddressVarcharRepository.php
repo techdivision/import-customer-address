@@ -22,7 +22,7 @@ namespace TechDivision\Import\Customer\Address\Repositories;
 
 use TechDivision\Import\Customer\Address\Utils\ParamNames;
 use TechDivision\Import\Customer\Address\Utils\SqlStatementKeys;
-use TechDivision\Import\Dbal\Repositories\AbstractRepository;
+use TechDivision\Import\Dbal\Collection\Repositories\AbstractRepository;
 
 /**
  * Repository implementation to load customer varchar attribute data.

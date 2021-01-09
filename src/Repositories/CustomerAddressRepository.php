@@ -22,7 +22,7 @@ namespace TechDivision\Import\Customer\Address\Repositories;
 
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Utils\SqlStatementKeys;
-use TechDivision\Import\Dbal\Repositories\AbstractRepository;
+use TechDivision\Import\Dbal\Collection\Repositories\AbstractRepository;
 
 /**
  * Repository implementation to load customer address data.
