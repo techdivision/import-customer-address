@@ -33,83 +33,156 @@
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
         </service>
 
-        <service id="import_customer_address.action.processor.customer.address.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.datetime.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.datetime.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_DATETIME</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.datetime.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.datetime.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DATETIME</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.datetime.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDatetimeUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.datetime.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DATETIME</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.decimal.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.decimal.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_DECIMAL</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.decimal.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.decimal.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_DECIMAL</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.decimal.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressDecimalUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.decimal.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_DECIMAL</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.int.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.int.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_INT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.int.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.int.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_INT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.int.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressIntUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.int.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_INT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.text.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.text.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_TEXT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.text.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.text.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_TEXT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.text.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressTextUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.text.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_TEXT</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.varchar.create" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharCreateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.varchar.create" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::CREATE_CUSTOMER_ADDRESS_VARCHAR</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.varchar.delete" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharDeleteProcessor">
+        <service id="import_customer_address.action.processor.customer.address.varchar.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_VARCHAR</argument>
+            </argument>
         </service>
-        <service id="import_customer_address.action.processor.customer.address.varchar.update" class="TechDivision\Import\Customer\Address\Actions\Processors\CustomerAddressVarcharUpdateProcessor">
+        <service id="import_customer_address.action.processor.customer.address.varchar.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer_address.repository.sql.statement"/>
+            <argument type="service" id="import.util.sql.sanitizers"/>
+            <argument type="collection">
+                <argument type="constant">TechDivision\Import\Customer\Address\Utils\SqlStatementKeys::UPDATE_CUSTOMER_ADDRESS_VARCHAR</argument>
+            </argument>
         </service>
 
         <service id="import_customer_address.action.customer.address" class="TechDivision\Import\Dbal\Collection\Actions\GenericIdentifierAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.create"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.update"/>
             <argument type="service" id="import_customer_address.action.processor.customer.address.delete"/>
+            <argument type="constant">TechDivision\Import\Customer\Address\Utils\MemberNames::ENTITY_ID</argument>
         </service>
         <service id="import_customer_address.action.customer.address.datetime" class="TechDivision\Import\Dbal\Collection\Actions\GenericAction">
             <argument type="service" id="import_customer_address.action.processor.customer.address.datetime.create"/>
