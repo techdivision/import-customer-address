@@ -20,8 +20,8 @@
 
 namespace TechDivision\Import\Customer\Address\Services;
 
-use TechDivision\Import\Actions\ActionInterface;
-use TechDivision\Import\Connection\ConnectionInterface;
+use TechDivision\Import\Dbal\Actions\ActionInterface;
+use TechDivision\Import\Dbal\Connection\ConnectionInterface;
 use TechDivision\Import\Repositories\EavAttributeRepositoryInterface;
 use TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface;
 use TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface;
@@ -44,7 +44,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * A PDO connection initialized with the values from the Doctrine EntityManager.
      *
-     * @var \TechDivision\Import\Connection\ConnectionInterface
+     * @var \TechDivision\Import\Dbal\Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -86,42 +86,42 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * The action for customer address CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressAction;
 
     /**
      * The action for customer address varchar attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressVarcharAction;
 
     /**
      * The action for customer address text attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressTextAction;
 
     /**
      * The action for customer address int attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressIntAction;
 
     /**
      * The action for customer address decimal attribute CRUD methods.
      *
-     * @var \\TechDivision\Import\Actions\ActionInterface
+     * @var \\TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressDecimalAction;
 
     /**
      * The action for customer address datetime attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAddressDatetimeAction;
 
@@ -135,19 +135,19 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Initialize the processor with the necessary assembler and repository instances.
      *
-     * @param \TechDivision\Import\Connection\ConnectionInterface                                         $connection                        The connection to use
+     * @param \TechDivision\Import\Dbal\Connection\ConnectionInterface                                    $connection                        The connection to use
      * @param \TechDivision\Import\Customer\Address\Assemblers\CustomerAddressAttributeAssemblerInterface $customerAddressAttributeAssembler The customer address attribute assembler to use
      * @param \TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface                $eavAttributeOptionValueRepository The EAV attribute option value repository to use
      * @param \TechDivision\Import\Repositories\EavAttributeRepositoryInterface                           $eavAttributeRepository            The EAV attribute repository to use
      * @param \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface                      $customerRepository                The customer repository to use
      * @param \TechDivision\Import\Customer\Address\Repositories\CustomerAddressRepositoryInterface       $customerAddressRepository         The customer address repository to use
      * @param \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface                          $eavEntityTypeRepository           The EAV entity type repository to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressAction             The customer address action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressDatetimeAction     The customer address datetime action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressDecimalAction      The customer address decimal action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressIntAction          The customer address integer action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressTextAction         The customer address text action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                                $customerAddressVarcharAction      The customer address varchar action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressAction             The customer address action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressDatetimeAction     The customer address datetime action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressDecimalAction      The customer address decimal action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressIntAction          The customer address integer action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressTextAction         The customer address text action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                                           $customerAddressVarcharAction      The customer address varchar action to use
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -181,7 +181,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the passed connection.
      *
-     * @param \TechDivision\Import\Connection\ConnectionInterface $connection The connection to set
+     * @param \TechDivision\Import\Dbal\Connection\ConnectionInterface $connection The connection to set
      *
      * @return void
      */
@@ -193,7 +193,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the connection.
      *
-     * @return \TechDivision\Import\Connection\ConnectionInterface The connection instance
+     * @return \TechDivision\Import\Dbal\Connection\ConnectionInterface The connection instance
      */
     public function getConnection()
     {
@@ -291,7 +291,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressAction The action with the customer CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressAction The action with the customer CRUD methods
      *
      * @return void
      */
@@ -303,7 +303,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressAction()
     {
@@ -313,7 +313,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address varchar attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressVarcharAction The action with the customer varchar attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressVarcharAction The action with the customer varchar attriute CRUD methods
      *
      * @return void
      */
@@ -325,7 +325,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address varchar attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressVarcharAction()
     {
@@ -335,7 +335,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address text attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressTextAction The action with the customer text attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressTextAction The action with the customer text attriute CRUD methods
      *
      * @return void
      */
@@ -347,7 +347,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address text attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressTextAction()
     {
@@ -357,7 +357,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address int attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressIntAction The action with the customer int attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressIntAction The action with the customer int attriute CRUD methods
      *
      * @return void
      */
@@ -369,7 +369,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address int attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressIntAction()
     {
@@ -379,7 +379,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address decimal attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressDecimalAction The action with the customer decimal attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressDecimalAction The action with the customer decimal attriute CRUD methods
      *
      * @return void
      */
@@ -391,7 +391,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address decimal attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressDecimalAction()
     {
@@ -401,7 +401,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Set's the action with the customer address datetime attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAddressDatetimeAction The action with the customer datetime attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAddressDatetimeAction The action with the customer datetime attriute CRUD methods
      *
      * @return void
      */
@@ -413,7 +413,7 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     /**
      * Return's the action with the customer address datetime attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAddressDatetimeAction()
     {
