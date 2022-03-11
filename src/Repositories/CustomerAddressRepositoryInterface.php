@@ -43,4 +43,13 @@ interface CustomerAddressRepositoryInterface extends RepositoryInterface
      * @return array|null The customer
      */
     public function load($id);
+
+    /**
+     * Return's the customer address with the passed Icrement ID.
+     *
+     * @param string|int $icrementId The increment ID of the customer address to return
+     *
+     * @return array|null The customer
+     */
+    public function loadByIncrementId($icrementId);
 }

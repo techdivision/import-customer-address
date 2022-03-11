@@ -45,6 +45,13 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
     protected $customerAddressesStmt;
 
     /**
+     * The prepared statement to load a customer address with the passed increment ID.
+     *
+     * @var \PDOStatement
+     */
+    protected $customerAddressIncrementIdStmt;
+
+    /**
      * Initializes the repository's prepared statements.
      *
      * @return void
@@ -57,6 +64,8 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS));
         $this->customerAddressesStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESSES));
+        $this->customerAddressIncrementIdStmt =
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS_INCREMENT_ID));
     }
 
     /**
@@ -84,5 +93,19 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
         // if not, try to load the customer with the passed entity ID
         $this->customerAddressStmt->execute(array(MemberNames::ENTITY_ID => $id));
         return $this->customerAddressStmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Return's the customer address with the passed increment ID.
+     *
+     * @param string|int $icrementId The increment ID of the customer address to return
+     *
+     * @return array|null The customer
+     */
+    public function loadByIncrementId($icrementId)
+    {
+        // if not, try to load the customer with the passed Increment ID
+        $this->customerAddressIncrementIdStmt->execute(array(MemberNames::INCREMENT_ID => $icrementId));
+        return $this->customerAddressIncrementIdStmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

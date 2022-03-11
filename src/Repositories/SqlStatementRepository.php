@@ -38,6 +38,10 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
             'SELECT *
                FROM ${table:customer_address_entity}
               WHERE entity_id = :entity_id',
+        SqlStatementKeys::CUSTOMER_ADDRESS_INCREMENT_ID =>
+            'SELECT *
+               FROM ${table:customer_address_entity}
+              WHERE increment_id = :increment_id',
         SqlStatementKeys::CUSTOMER_ADDRESSES =>
             'SELECT *
                FROM ${table:customer_address_entity}',

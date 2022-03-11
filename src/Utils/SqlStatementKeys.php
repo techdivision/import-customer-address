@@ -215,4 +215,11 @@ class SqlStatementKeys extends \TechDivision\Import\Utils\SqlStatementKeys
      * @var string
      */
     const DELETE_CUSTOMER_ADDRESS_TEXT = 'delete.customer_address_text';
+
+    /**
+     * The SQL statement to load the customer with the passed increment ID.
+     *
+     * @var string
+     */
+    const CUSTOMER_ADDRESS_INCREMENT_ID = 'select.customer_address.increment_id';
 }
