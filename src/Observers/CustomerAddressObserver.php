@@ -114,13 +114,13 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         $vatRequestSuccess = $this->getValue(ColumnKeys::VAT_REQUEST_SUCCESS);
 
         // load the customer's addtional attributes
-        $incrementId = null;
+        $incrementId = $this->getValue(ColumnKeys::INCREMENT_ID);
         $isActive = 1;
 
         // prepare the date format for the created at/updated at dates
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
-        $vatRequestDate = $this->getValue(ColumnKeys::VAT_REQUEST_DATE, date('Y-m-d H:i:s'), array($this, 'formatDate'));
+        $vatRequestDate = $this->getValue(ColumnKeys::VAT_REQUEST_DATE, null, array($this, 'formatDate'));
 
         // return the prepared customer
         return $this->initializeEntity(
@@ -169,6 +169,11 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
             return $this->mergeEntity($entity, $attr);
         }
 
+        // try to load the customer address with the given increment ID
+        if (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerAddressByIncrementId($attr[MemberNames::INCREMENT_ID])) {
+            return $this->mergeEntity($entity, $attr);
+        }
+
         // remove the entity ID
         unset($attr[MemberNames::ENTITY_ID]);
 
@@ -186,6 +191,18 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function loadCustomerAddress($id)
     {
         return $this->getCustomerAddressBunchProcessor()->loadCustomerAddress($id);
+    }
+
+    /**
+     * Return's the customer with the passed increment ID.
+     *
+     * @param string|integer $incrementId The increment ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    protected function loadCustomerAddressByIncrementId($incrementId)
+    {
+        return $this->getCustomerAddressBunchProcessor()->loadCustomerAddressByIncrementId($incrementId);
     }
 
     /**

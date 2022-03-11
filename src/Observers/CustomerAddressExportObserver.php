@@ -85,7 +85,8 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
 
         $artefacts[] = $this->newArtefact(
             array(
-                ColumnKeys::ENTITY_ID                => null,
+                ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID) ?? null,
+                ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::INCREMENT_ID)?? null,
                 ColumnKeys::EMAIL                    => $email,
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
                 ColumnKeys::CITY                     => $this->getValue(ColumnKeys::ADDRESS_CITY),
@@ -106,7 +107,8 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::ADDRESS_DEFAULT_SHIPPING => $this->getValue(ColumnKeys::ADDRESS_DEFAULT_SHIPPING)
             ),
             array(
-                ColumnKeys::ENTITY_ID                => null,
+                ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID) ?? null,
+                ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::INCREMENT_ID)?? null,
                 ColumnKeys::WEBSITE                  => ColumnKeys::WEBSITE,
                 ColumnKeys::EMAIL                    => ColumnKeys::EMAIL,
                 ColumnKeys::CITY                     => ColumnKeys::ADDRESS_CITY,
