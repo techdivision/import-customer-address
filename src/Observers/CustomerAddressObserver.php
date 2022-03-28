@@ -169,13 +169,14 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
             return $this->mergeEntity($entity, $attr);
         }
 
+        // remove the entity ID
+        // if nothing found with entity_id then remove to try with incement id or create new one
+        unset($attr[MemberNames::ENTITY_ID]);
+
         // try to load the customer address with the given increment ID
         if (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerAddressByIncrementId($attr[MemberNames::INCREMENT_ID])) {
             return $this->mergeEntity($entity, $attr);
         }
-
-        // remove the entity ID
-        unset($attr[MemberNames::ENTITY_ID]);
 
         // simply return the attributes
         return $attr;

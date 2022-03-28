@@ -255,4 +255,11 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
      * @var string
      */
     const ADDRESS_VAT_ID = '_address_vat_id';
+
+    /**
+     * Name for the member 'increment_id'.
+     *
+     * @var string
+     */
+    const ADDRESS_INCREMENT_ID = '_address_increment_id';
 }

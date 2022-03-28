@@ -1,4 +1,25 @@
-# Version 16.0.2
+
+# Version 16.0.3
+
+## Bugfixes
+
+* Update customer address on new column _address_increment_id
+
+## Features
+
+* none
+
+# Version 16.0.3
+
+## Bugfixes
+
+* none
+
+## Features
+
+* Import multiple customer addresse on increment_id
+
+* # Version 16.0.2
 
 ## Bugfixes
 
