@@ -99,7 +99,7 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
         // if not, try to load the customer with the passed entity ID
         $this->customerAddressStmt->execute(array(MemberNames::ENTITY_ID => $id));
         return $this->customerAddressStmt->fetch(\PDO::FETCH_ASSOC);
-    } 
+    }
     
     /**
      * Return's the customer address with the passed increment ID.
