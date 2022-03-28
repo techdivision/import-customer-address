@@ -80,7 +80,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
-                ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::INCREMENT_ID),
+                ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::ADDRESS_INCREMENT_ID),
                 ColumnKeys::EMAIL                    => $email,
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
                 ColumnKeys::CITY                     => $this->getValue(ColumnKeys::ADDRESS_CITY),
@@ -152,6 +152,6 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
      */
     protected function addArtefacts(array $artefacts)
     {
-        $this->getSubject()->addArtefacts(CustomerAddressExportObserver::ARTEFACT_TYPE, $artefacts);
+        $this->getSubject()->addArtefacts(CustomerAddressExportObserver::ARTEFACT_TYPE, $artefacts, false);
     }
 }

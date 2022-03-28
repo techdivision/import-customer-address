@@ -7,6 +7,7 @@
 ## Features
 
 * Refactoring deprecated classes. see https://github.com/techdivision/import-cli-simple/blob/master/UPGRADE-4.0.0.md
+* Update customer address on new column _address_increment_id
 
 # Version 16.0.1
 
