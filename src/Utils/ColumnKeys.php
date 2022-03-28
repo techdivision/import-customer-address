@@ -256,5 +256,4 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
      * @var string
      */
     const ADDRESS_INCREMENT_ID = '_address_increment_id';
-
 }
