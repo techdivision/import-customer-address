@@ -1,3 +1,13 @@
+# Version 17.0.1
+
+## Bugfixes
+
+* Fix bug: Customer addresses overwrite default address
+
+## Features
+
+* none
+
 # Version 17.0.0
 
 ## Bugfixes
