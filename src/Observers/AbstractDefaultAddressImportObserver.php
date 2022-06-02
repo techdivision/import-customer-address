@@ -121,6 +121,10 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
             // query whether or not we've a default shipping/billing address
             if ((integer) $this->getValue($type) === 1) {
                 $addressId = $this->getSubject()->getLastEntityId();
+            } else {
+                // Don't update address when not marked as default
+                // Prevent resetting default address
+                return;
             }
 
             // finally update the customer

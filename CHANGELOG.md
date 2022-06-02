@@ -1,3 +1,12 @@
+# Version 16.0.6
+
+## Bugfixes
+
+* Fix bug: Customer addresses overwrite default address
+
+## Features
+
+* none
 
 # Version 16.0.5
 
