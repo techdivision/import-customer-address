@@ -17,6 +17,7 @@ namespace TechDivision\Import\Customer\Address\Observers;
 use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
+use TechDivision\Import\Utils\RegistryKeys;
 
 /**
  * Observer that create's the customer address itself.
@@ -76,6 +77,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      * Prepare the attributes of the entity that has to be persisted.
      *
      * @return array The prepared attributes
+     * @throws \Exception
      */
     protected function prepareAttributes()
     {
@@ -86,6 +88,24 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // load the customer
         $customer = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
 
+        $message =  sprintf('Can\'t find customer with email %s', $this->getValue(ColumnKeys::EMAIL));
+        if (!$customer && $this->subject->isStrictMode()) {
+            $this->mergeStatus(
+                array(
+                    RegistryKeys::NO_STRICT_VALIDATIONS => array(
+                        basename($this->getFilename()) => array(
+                            $this->getLineNumber() => array(
+                                $this->getValue(ColumnKeys::EMAIL) => $message
+                            )
+                        )
+                    )
+                )
+            );
+            $this->getSystemLogger()->warning($message);
+        } else {
+            throw new \Exception($message);
+        }
+        
         // initialize the customer values
         $entityId = $this->getValue(ColumnKeys::ENTITY_ID);
         $city = $this->getValue(ColumnKeys::CITY);
