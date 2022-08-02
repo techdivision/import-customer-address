@@ -67,13 +67,10 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
      * Process the observer's business logic.
      *
      * @return void
+     * @throws \Exception
      */
     protected function process()
     {
-
-        // initialize the array for the links
-        $artefacts = array();
-
         // load the email with the column keys of the customer-address CSV file
         $email = $this->getValue(\TechDivision\Import\Customer\Utils\ColumnKeys::EMAIL);
 
@@ -89,7 +86,9 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
             );
             return;
         }
-
+        // initialize the array for the links
+        $artefacts = array();
+        
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
