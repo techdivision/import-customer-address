@@ -77,13 +77,26 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         // load the email with the column keys of the customer-address CSV file
         $email = $this->getValue(\TechDivision\Import\Customer\Utils\ColumnKeys::EMAIL);
 
+        $addressCity = $this->getValue(ColumnKeys::ADDRESS_CITY);
+        $addressStreet = $this->getValue(ColumnKeys::ADDRESS_STREET);
+
+        if (!$addressCity || !$addressStreet) {
+            $this->getSystemLogger()->warning(
+                sprintf(
+                    'The customer address was not initialized, no address data specified for the email "%s"',
+                    $email
+                )
+            );
+            return;
+        }
+
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
                 ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::ADDRESS_INCREMENT_ID),
                 ColumnKeys::EMAIL                    => $email,
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
-                ColumnKeys::CITY                     => $this->getValue(ColumnKeys::ADDRESS_CITY),
+                ColumnKeys::CITY                     => $addressCity,
                 ColumnKeys::COMPANY                  => $this->getValue(ColumnKeys::ADDRESS_COMPANY),
                 ColumnKeys::COUNTRY_ID               => $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID),
                 ColumnKeys::FAX                      => $this->getValue(ColumnKeys::ADDRESS_FAX),
@@ -93,7 +106,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::POSTCODE                 => $this->getValue(ColumnKeys::ADDRESS_POSTCODE),
                 ColumnKeys::PREFIX                   => $this->getValue(ColumnKeys::ADDRESS_PREFIX),
                 ColumnKeys::REGION                   => $this->getValue(ColumnKeys::ADDRESS_REGION),
-                ColumnKeys::STREET                   => $this->getValue(ColumnKeys::ADDRESS_STREET),
+                ColumnKeys::STREET                   => $addressStreet,
                 ColumnKeys::SUFFIX                   => $this->getValue(ColumnKeys::ADDRESS_SUFFIX),
                 ColumnKeys::TELEPHONE                => $this->getValue(ColumnKeys::ADDRESS_TELEPHONE),
                 ColumnKeys::VAT_ID                   => $this->getValue(ColumnKeys::ADDRESS_VAT_ID),

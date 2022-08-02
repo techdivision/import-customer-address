@@ -88,9 +88,26 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // load the customer
         $customer = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
 
-        if (!$customer){
-            $message =  sprintf('Can\'t find customer with email %s', $this->getValue(ColumnKeys::EMAIL));
-            throw new \Exception($message);
+        if (!$customer) {
+            $message =  sprintf(
+                'the imported address has no customer with email %s',
+                $this->getValue(ColumnKeys::EMAIL)
+            );
+            if ($this->subject->isStrictMode()) {
+                $this->mergeStatus(
+                    array(
+                        RegistryKeys::NO_STRICT_VALIDATIONS => array(
+                            basename($this->getFilename()) => array(
+                                $this->getLineNumber() => array(
+                                    $this->getValue(ColumnKeys::EMAIL) => $message
+                                )
+                            )
+                        )
+                    )
+                );
+            } else {
+                throw new \Exception($message);
+            }
         }
         
         // initialize the customer values
