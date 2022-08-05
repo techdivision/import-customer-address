@@ -74,10 +74,18 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         // load the email with the column keys of the customer-address CSV file
         $email = $this->getValue(\TechDivision\Import\Customer\Utils\ColumnKeys::EMAIL);
 
-        $addressCity = $this->getValue(ColumnKeys::ADDRESS_CITY);
-        $addressStreet = $this->getValue(ColumnKeys::ADDRESS_STREET);
+        $firstName = $this->getValue(ColumnKeys::ADDRESS_FIRSTNAME, '');
+        $lastName = $this->getValue(ColumnKeys::ADDRESS_LASTNAME, '');
+        $addressStreet = $this->getValue(ColumnKeys::ADDRESS_STREET, '');
+        $addressCity = $this->getValue(ColumnKeys::ADDRESS_CITY, '');
+        $countryId = $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID, '');
 
-        if (!$addressCity || !$addressStreet) {
+        if (empty($addressCity)
+            && empty($addressStreet)
+            && empty($firstName)
+            && empty($lastName)
+            && empty($countryId)
+        ) {
             $this->getSystemLogger()->warning(
                 sprintf(
                     'The customer address was not initialized, no address data specified for the email "%s"',
@@ -97,10 +105,10 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
                 ColumnKeys::CITY                     => $addressCity,
                 ColumnKeys::COMPANY                  => $this->getValue(ColumnKeys::ADDRESS_COMPANY),
-                ColumnKeys::COUNTRY_ID               => $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID),
+                ColumnKeys::COUNTRY_ID               => $countryId,
                 ColumnKeys::FAX                      => $this->getValue(ColumnKeys::ADDRESS_FAX),
-                ColumnKeys::FIRSTNAME                => $this->getValue(ColumnKeys::ADDRESS_FIRSTNAME),
-                ColumnKeys::LASTNAME                 => $this->getValue(ColumnKeys::ADDRESS_LASTNAME),
+                ColumnKeys::FIRSTNAME                => $firstName,
+                ColumnKeys::LASTNAME                 => $lastName,
                 ColumnKeys::MIDDLENAME               => $this->getValue(ColumnKeys::ADDRESS_MIDDLENAME),
                 ColumnKeys::POSTCODE                 => $this->getValue(ColumnKeys::ADDRESS_POSTCODE),
                 ColumnKeys::PREFIX                   => $this->getValue(ColumnKeys::ADDRESS_PREFIX),
