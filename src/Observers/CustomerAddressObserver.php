@@ -17,7 +17,10 @@ namespace TechDivision\Import\Customer\Address\Observers;
 use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
-use TechDivision\Import\Utils\RegistryKeys;
+use TechDivision\Import\Observers\CleanUpEmptyColumnsTrait;
+use TechDivision\Import\Category\Utils\CoreConfigDataKeys;
+use TechDivision\Import\Subjects\CleanUpColumnsSubjectInterface;
+use TechDivision\Import\Utils\ConfigurationKeys;
 
 /**
  * Observer that create's the customer address itself.
@@ -30,6 +33,16 @@ use TechDivision\Import\Utils\RegistryKeys;
  */
 class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 {
+
+
+    use CleanUpEmptyColumnsTrait;
+
+    /**
+     * Name for the column 'customer/address/telephone_show'.
+     *
+     * @var string
+     */
+    const CUSTOMER_ADDRESS_TELEPHONE_SHOW = 'customer/address/telephone_show';
 
     /**
      * The customer address bunch processor instance.
@@ -125,7 +138,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         $regionId = $this->getValue(ColumnKeys::REGION_ID);
         $street = $this->getValue(ColumnKeys::STREET);
         $suffix = $this->getValue(ColumnKeys::SUFFIX);
-        $telephone = $this->getValue(ColumnKeys::TELEPHONE);
+        $telephone = $this->checkConfigData($this->getValue(ColumnKeys::TELEPHONE));
         $vatId = $this->getValue(ColumnKeys::VAT_ID);
         $vatIsValid = $this->getValue(ColumnKeys::VAT_IS_VALID);
         $vatRequestId = $this->getValue(ColumnKeys::VAT_REQUEST_ID);
@@ -272,5 +285,22 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function getStoreWebsiteIdByCode($code)
     {
         return $this->getSubject()->getStoreWebsiteIdByCode($code);
+    }
+
+    /**
+     * @param string $value value of customer column
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function checkConfigData($value)
+    {
+        $emptyValueDefinition = $this->getEmptyAttributeValueConstant();
+
+        $telConfig = $this->getSubject()->getCoreConfigData(self::CUSTOMER_ADDRESS_TELEPHONE_SHOW, $value);
+        if ($telConfig !==  'req' && $value === $emptyValueDefinition) {
+            return '';
+        }
+        return $value;
     }
 }
