@@ -1,3 +1,16 @@
+# Version 17.0.2
+
+## Bugfixes
+
+* Fix bugs: 
+    * PAC-619: Customer Address Import - Error if customer not found
+    * PAC-613: Start Customer Address Import only if address information is included
+    * PAC-621: Allow mandatory fields with Empty Value if not required
+
+## Features
+
+* none
+
 # Version 17.0.1
 
 ## Bugfixes

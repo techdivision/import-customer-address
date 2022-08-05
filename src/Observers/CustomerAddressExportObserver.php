@@ -67,33 +67,53 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
      * Process the observer's business logic.
      *
      * @return void
+     * @throws \Exception
      */
     protected function process()
     {
-
-        // initialize the array for the links
-        $artefacts = array();
-
         // load the email with the column keys of the customer-address CSV file
         $email = $this->getValue(\TechDivision\Import\Customer\Utils\ColumnKeys::EMAIL);
 
+        $firstName = $this->getValue(ColumnKeys::ADDRESS_FIRSTNAME, '');
+        $lastName = $this->getValue(ColumnKeys::ADDRESS_LASTNAME, '');
+        $addressStreet = $this->getValue(ColumnKeys::ADDRESS_STREET, '');
+        $addressCity = $this->getValue(ColumnKeys::ADDRESS_CITY, '');
+        $countryId = $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID, '');
+
+        if (empty($addressCity)
+            && empty($addressStreet)
+            && empty($firstName)
+            && empty($lastName)
+            && empty($countryId)
+        ) {
+            $this->getSystemLogger()->warning(
+                sprintf(
+                    'The customer address was not initialized, no address data specified for the email "%s"',
+                    $email
+                )
+            );
+            return;
+        }
+        // initialize the array for the links
+        $artefacts = array();
+        
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
                 ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::ADDRESS_INCREMENT_ID),
                 ColumnKeys::EMAIL                    => $email,
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
-                ColumnKeys::CITY                     => $this->getValue(ColumnKeys::ADDRESS_CITY),
+                ColumnKeys::CITY                     => $addressCity,
                 ColumnKeys::COMPANY                  => $this->getValue(ColumnKeys::ADDRESS_COMPANY),
-                ColumnKeys::COUNTRY_ID               => $this->getValue(ColumnKeys::ADDRESS_COUNTRY_ID),
+                ColumnKeys::COUNTRY_ID               => $countryId,
                 ColumnKeys::FAX                      => $this->getValue(ColumnKeys::ADDRESS_FAX),
-                ColumnKeys::FIRSTNAME                => $this->getValue(ColumnKeys::ADDRESS_FIRSTNAME),
-                ColumnKeys::LASTNAME                 => $this->getValue(ColumnKeys::ADDRESS_LASTNAME),
+                ColumnKeys::FIRSTNAME                => $firstName,
+                ColumnKeys::LASTNAME                 => $lastName,
                 ColumnKeys::MIDDLENAME               => $this->getValue(ColumnKeys::ADDRESS_MIDDLENAME),
                 ColumnKeys::POSTCODE                 => $this->getValue(ColumnKeys::ADDRESS_POSTCODE),
                 ColumnKeys::PREFIX                   => $this->getValue(ColumnKeys::ADDRESS_PREFIX),
                 ColumnKeys::REGION                   => $this->getValue(ColumnKeys::ADDRESS_REGION),
-                ColumnKeys::STREET                   => $this->getValue(ColumnKeys::ADDRESS_STREET),
+                ColumnKeys::STREET                   => $addressStreet,
                 ColumnKeys::SUFFIX                   => $this->getValue(ColumnKeys::ADDRESS_SUFFIX),
                 ColumnKeys::TELEPHONE                => $this->getValue(ColumnKeys::ADDRESS_TELEPHONE),
                 ColumnKeys::VAT_ID                   => $this->getValue(ColumnKeys::ADDRESS_VAT_ID),

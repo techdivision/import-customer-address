@@ -17,6 +17,9 @@ namespace TechDivision\Import\Customer\Address\Observers;
 use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
+use TechDivision\Import\Customer\Address\Utils\CoreConfigDataKeys;
+use TechDivision\Import\Utils\ConfigurationKeys;
+use TechDivision\Import\Utils\RegistryKeys;
 
 /**
  * Observer that create's the customer address itself.
@@ -29,7 +32,6 @@ use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorI
  */
 class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 {
-
     /**
      * The customer address bunch processor instance.
      *
@@ -68,14 +70,17 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // prepare the static entity values
         $customerAddress = $this->initializeCustomerAddress($this->prepareAttributes());
 
-        // insert the entity and set the entity ID
-        $this->setLastEntityId($this->persistCustomerAddress($customerAddress));
+        if (!empty($customerAddress)) {
+            // insert the entity and set the entity ID
+            $this->setLastEntityId($this->persistCustomerAddress($customerAddress));
+        }
     }
 
     /**
      * Prepare the attributes of the entity that has to be persisted.
      *
      * @return array The prepared attributes
+     * @throws \Exception
      */
     protected function prepareAttributes()
     {
@@ -86,22 +91,41 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // load the customer
         $customer = $this->loadCustomerByEmailAndWebsiteId($this->getValue(ColumnKeys::EMAIL), $websiteId);
 
+        if (!$customer) {
+            $message =  sprintf(
+                'the imported address has no customer with email %s',
+                $this->getValue(ColumnKeys::EMAIL)
+            );
+            $this->mergeStatus(
+                array(
+                    RegistryKeys::NO_STRICT_VALIDATIONS => array(
+                        basename($this->getFilename()) => array(
+                            $this->getLineNumber() => array(
+                                ColumnKeys::EMAIL => $message
+                            )
+                        )
+                    )
+                )
+            );
+            return [];
+        }
+        
         // initialize the customer values
         $entityId = $this->getValue(ColumnKeys::ENTITY_ID);
-        $city = $this->getValue(ColumnKeys::CITY);
+        $city = $this->getValue(ColumnKeys::CITY, '');
         $company = $this->getValue(ColumnKeys::COMPANY);
-        $countryId = $this->getValue(ColumnKeys::COUNTRY_ID);
+        $countryId = $this->getValue(ColumnKeys::COUNTRY_ID, '');
         $fax = $this->getValue(ColumnKeys::FAX);
-        $firstname = $this->getValue(ColumnKeys::FIRSTNAME);
-        $lastname = $this->getValue(ColumnKeys::LASTNAME);
+        $firstname = $this->getValue(ColumnKeys::FIRSTNAME, '');
+        $lastname = $this->getValue(ColumnKeys::LASTNAME, '');
         $middlename = $this->getValue(ColumnKeys::MIDDLENAME);
         $postcode = $this->getValue(ColumnKeys::POSTCODE);
         $prefix = $this->getValue(ColumnKeys::PREFIX);
         $region = $this->getValue(ColumnKeys::REGION);
         $regionId = $this->getValue(ColumnKeys::REGION_ID);
-        $street = $this->getValue(ColumnKeys::STREET);
+        $street = $this->getValue(ColumnKeys::STREET, '');
         $suffix = $this->getValue(ColumnKeys::SUFFIX);
-        $telephone = $this->getValue(ColumnKeys::TELEPHONE);
+        $telephone = $this->checkCustomerPhoneConfig($this->getValue(ColumnKeys::TELEPHONE, ''));
         $vatId = $this->getValue(ColumnKeys::VAT_ID);
         $vatIsValid = $this->getValue(ColumnKeys::VAT_IS_VALID);
         $vatRequestId = $this->getValue(ColumnKeys::VAT_REQUEST_ID);
@@ -157,6 +181,9 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      */
     protected function initializeCustomerAddress(array $attr)
     {
+        if (empty($attr)) {
+            return [];
+        }
 
         // try to load the customer address with the given entity ID
         if ($entity = $this->loadCustomerAddress($attr[MemberNames::ENTITY_ID])) {
@@ -248,5 +275,20 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function getStoreWebsiteIdByCode($code)
     {
         return $this->getSubject()->getStoreWebsiteIdByCode($code);
+    }
+
+    /**
+     * @param string $value value of customer column
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public function checkCustomerPhoneConfig($value)
+    {
+        $telConfig = $this->getSubject()->getCoreConfigData(CoreConfigDataKeys::CUSTOMER_ADDRESS_TELEPHONE_SHOW);
+        if (isset($telConfig) && $telConfig !==  'req') {
+            return !empty($value) ? $value : '';
+        }
+        return $value;
     }
 }
