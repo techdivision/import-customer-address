@@ -20,6 +20,7 @@ use TechDivision\Import\Customer\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 use TechDivision\Import\Customer\Observers\AbstractCustomerImportObserver;
+use TechDivision\Import\Observers\StateDetectorInterface;
 
 /**
  * Abstract class that provides the functionality to update a customers default
@@ -57,9 +58,13 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
      * DefaultShippingObserver constructor.
      *
      * @param \TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface $customerBunchProcessor The processor instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface                  $stateDetector          The state detector instance
      */
-    public function __construct(CustomerBunchProcessorInterface $customerBunchProcessor)
-    {
+    public function __construct(
+        CustomerBunchProcessorInterface $customerBunchProcessor,
+        StateDetectorInterface $stateDetector = null
+    ) {
+        parent::__construct($stateDetector);
         $this->customerBunchProcessor = $customerBunchProcessor;
     }
 

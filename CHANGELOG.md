@@ -1,3 +1,13 @@
+# Version 17.0.3
+
+## Bugfixes
+
+* none
+
+## Features
+
+* StateDetectorInterface in observer construktor
+
 # Version 17.0.2
 
 ## Bugfixes

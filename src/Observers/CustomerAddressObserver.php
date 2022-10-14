@@ -18,6 +18,7 @@ use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
 use TechDivision\Import\Customer\Address\Utils\CoreConfigDataKeys;
+use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Utils\ConfigurationKeys;
 use TechDivision\Import\Utils\RegistryKeys;
 
@@ -43,9 +44,13 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      * Initialize the observer with the passed customer bunch processor instance.
      *
      * @param \TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface $customerAddressBunchProcessor The customer address bunch processor instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface                                 $stateDetector                 The state detector instance
      */
-    public function __construct(CustomerAddressBunchProcessorInterface $customerAddressBunchProcessor)
-    {
+    public function __construct(
+        CustomerAddressBunchProcessorInterface $customerAddressBunchProcessor,
+        StateDetectorInterface $stateDetector = null
+    ) {
+        parent::__construct($stateDetector);
         $this->customerAddressBunchProcessor = $customerAddressBunchProcessor;
     }
 
