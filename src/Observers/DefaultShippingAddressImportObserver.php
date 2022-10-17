@@ -39,6 +39,6 @@ class DefaultShippingAddressImportObserver extends AbstractDefaultAddressImportO
      */
     protected function process()
     {
-        $this->saveDefaultAddressByType(ColumnKeys::ADDRESS_DEFAULT_SHIPPING);
+        $this->saveDefaultAddressByType(ColumnKeys::ADDRESS_DEFAULT_SHIPPING, 'customer_entity_default_shippingaddress');
     }
 }

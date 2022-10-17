@@ -1,3 +1,14 @@
+# Version 17.0.4
+
+## Bugfixes
+
+* fix crash on not existing configuration for `customer/address/telephone_show`
+* Clear columns on update to update only fields that not null. Use `__EMPTY__VALUE__` instead
+
+## Features
+
+* new column `is_active`for address import. Over customer import the column named `_address_is_active`. 
+
 # Version 17.0.3
 
 ## Bugfixes

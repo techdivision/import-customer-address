@@ -39,6 +39,6 @@ class DefaultBillingAddressImportObserver extends AbstractDefaultAddressImportOb
      */
     protected function process()
     {
-        $this->saveDefaultAddressByType(ColumnKeys::ADDRESS_DEFAULT_BILLING);
+        $this->saveDefaultAddressByType(ColumnKeys::ADDRESS_DEFAULT_BILLING, 'customer_entity_default_billingaddress');
     }
 }

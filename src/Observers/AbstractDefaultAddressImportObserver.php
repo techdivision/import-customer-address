@@ -101,11 +101,11 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
     /**
      * Save default address by type.
      *
-     * @param string $type The address type to save
-     *
+     * @param string      $type          The address type to save
+     * @param string|null $changeSetName The change set name to use
      * @return void
      */
-    protected function saveDefaultAddressByType($type)
+    protected function saveDefaultAddressByType($type, $changeSetName = null)
     {
 
         // load email and website ID
@@ -126,16 +126,19 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
                 return;
             }
 
-            // finally update the customer
-            $this->getCustomerBunchProcessor()->persistCustomer(
-                $this->mergeEntity(
-                    $customer,
-                    array(
-                        $this->mapColumName($type) => $addressId,
-                        MemberNames::UPDATED_AT    => $this->formatDate(date($this->getSourceDateFormat()))
-                    )
-                )
+            $customerMerged = $this->mergeEntity(
+                $customer,
+                array(
+                    $this->mapColumName($type) => $addressId,
+                    MemberNames::UPDATED_AT    => $this->formatDate(date($this->getSourceDateFormat()))
+                ),
+                $changeSetName
             );
+
+            // finally update the customer if relation has changed
+            if ($this->hasChanges($customerMerged)) {
+                $this->getCustomerBunchProcessor()->persistCustomer($customerMerged);
+            }
         }
     }
 }

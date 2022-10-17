@@ -101,6 +101,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
                 ColumnKeys::INCREMENT_ID             => $this->getValue(ColumnKeys::ADDRESS_INCREMENT_ID),
+                ColumnKeys::IS_ACTIVE                => $this->getValue(ColumnKeys::ADDRESS_IS_ACTIVE),
                 ColumnKeys::EMAIL                    => $email,
                 ColumnKeys::WEBSITE                  => $this->getValue(ColumnKeys::WEBSITE),
                 ColumnKeys::CITY                     => $addressCity,
@@ -123,6 +124,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
             array(
                 ColumnKeys::ENTITY_ID                => ColumnKeys::ENTITY_ID,
                 ColumnKeys::INCREMENT_ID             => ColumnKeys::INCREMENT_ID,
+                ColumnKeys::IS_ACTIVE                => ColumnKeys::ADDRESS_IS_ACTIVE,
                 ColumnKeys::WEBSITE                  => ColumnKeys::WEBSITE,
                 ColumnKeys::EMAIL                    => ColumnKeys::EMAIL,
                 ColumnKeys::CITY                     => ColumnKeys::ADDRESS_CITY,

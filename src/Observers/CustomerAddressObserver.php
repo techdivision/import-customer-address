@@ -18,6 +18,7 @@ use TechDivision\Import\Customer\Address\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Address\Utils\MemberNames;
 use TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface;
 use TechDivision\Import\Customer\Address\Utils\CoreConfigDataKeys;
+use TechDivision\Import\Observers\CleanUpEmptyColumnsTrait;
 use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Utils\ConfigurationKeys;
 use TechDivision\Import\Utils\RegistryKeys;
@@ -33,6 +34,9 @@ use TechDivision\Import\Utils\RegistryKeys;
  */
 class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 {
+
+    use CleanUpEmptyColumnsTrait;
+
     /**
      * The customer address bunch processor instance.
      *
@@ -76,8 +80,12 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         $customerAddress = $this->initializeCustomerAddress($this->prepareAttributes());
 
         if (!empty($customerAddress)) {
-            // insert the entity and set the entity ID
-            $this->setLastEntityId($this->persistCustomerAddress($customerAddress));
+            if ($this->hasChanges($customerAddress)) {
+                // insert the entity and set the entity ID
+                $this->setLastEntityId($this->persistCustomerAddress($customerAddress));
+            } else {
+                $this->setLastEntityId($customerAddress[MemberNames::ENTITY_ID]);
+            }
         }
     }
 
@@ -138,7 +146,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 
         // load the customer's addtional attributes
         $incrementId = $this->getValue(ColumnKeys::INCREMENT_ID);
-        $isActive = 1;
+        $isActive = $this->getValue(ColumnKeys::IS_ACTIVE);
 
         // prepare the date format for the created at/updated at dates
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
@@ -192,6 +200,9 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 
         // try to load the customer address with the given entity ID
         if ($entity = $this->loadCustomerAddress($attr[MemberNames::ENTITY_ID])) {
+            // clear row elements that are not allowed to be updated
+            $attr = $this->clearRowData($attr);
+
             return $this->mergeEntity($entity, $attr);
         }
 
@@ -201,7 +212,18 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
 
         // try to load the customer address with the given increment ID
         if (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerAddressByIncrementId($attr[MemberNames::INCREMENT_ID])) {
+            // clear row elements that are not allowed to be updated
+            $attr = $this->clearRowData($attr, true);
+
             return $this->mergeEntity($entity, $attr);
+        } else {
+            // cleanup __EMPTY__VALUE__ entries, don't remove array elements
+            $attr = $this->clearRowData($attr, false);
+        }
+
+        // New Customer address always active
+        if ($attr[MemberNames::IS_ACTIVE] == null) {
+            $attr[MemberNames::IS_ACTIVE] = 1;
         }
 
         // simply return the attributes
@@ -290,7 +312,11 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      */
     public function checkCustomerPhoneConfig($value)
     {
-        $telConfig = $this->getSubject()->getCoreConfigData(CoreConfigDataKeys::CUSTOMER_ADDRESS_TELEPHONE_SHOW);
+        try {
+            $telConfig = $this->getSubject()->getCoreConfigData(CoreConfigDataKeys::CUSTOMER_ADDRESS_TELEPHONE_SHOW);
+        } catch (\Exception $e) {
+            return $value;
+        }
         if (isset($telConfig) && $telConfig !==  'req') {
             return !empty($value) ? $value : '';
         }
