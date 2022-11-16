@@ -1,3 +1,13 @@
+# Version 17.0.5
+
+## Bugfixes
+
+* Override address with existing customer and increment_id
+
+## Features
+
+* none
+
 # Version 17.0.4
 
 ## Bugfixes

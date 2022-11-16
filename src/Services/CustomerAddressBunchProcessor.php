@@ -570,12 +570,13 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
      * Return's the customer with the passed increment ID.
      *
      * @param string|integer $incrementId The increment ID of the customer to return
+     * @param string|integer $customerId  The entity_id of the customer
      *
      * @return array|null The customer
      */
-    public function loadCustomerAddressByIncrementId($incrementId)
+    public function loadCustomerAddressByIncrementId($incrementId, $customerId)
     {
-        return $this->getCustomerAddressRepository()->loadByIncrementId($incrementId);
+        return $this->getCustomerAddressRepository()->loadByIncrementIdAndCustomerEntityId($incrementId, $customerId);
     }
 
     /**

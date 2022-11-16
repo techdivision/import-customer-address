@@ -41,7 +41,8 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
         SqlStatementKeys::CUSTOMER_ADDRESS_INCREMENT_ID =>
             'SELECT *
                FROM ${table:customer_address_entity}
-              WHERE increment_id = :increment_id',
+              WHERE increment_id = :increment_id
+                AND parent_id = :parent_id',
         SqlStatementKeys::CUSTOMER_ADDRESSES =>
             'SELECT *
                FROM ${table:customer_address_entity}',

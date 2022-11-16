@@ -210,8 +210,8 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         // if nothing found with entity_id then remove to try with incement id or create new one
         unset($attr[MemberNames::ENTITY_ID]);
 
-        // try to load the customer address with the given increment ID
-        if (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerAddressByIncrementId($attr[MemberNames::INCREMENT_ID])) {
+        // try to load the customer address with the given increment ID and the customer id
+        if (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerAddressByIncrementId($attr[MemberNames::INCREMENT_ID], $attr[MemberNames::PARENT_ID])) {
             // clear row elements that are not allowed to be updated
             $attr = $this->clearRowData($attr, true);
 
@@ -246,12 +246,13 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      * Return's the customer with the passed increment ID.
      *
      * @param string|integer $incrementId The increment ID of the customer to return
+     * @param string|integer $customerId  The entity_id of the customer
      *
      * @return array|null The customer
      */
-    protected function loadCustomerAddressByIncrementId($incrementId)
+    protected function loadCustomerAddressByIncrementId($incrementId, $customerId)
     {
-        return $this->getCustomerAddressBunchProcessor()->loadCustomerAddressByIncrementId($incrementId);
+        return $this->getCustomerAddressBunchProcessor()->loadCustomerAddressByIncrementId($incrementId, $customerId);
     }
 
     /**

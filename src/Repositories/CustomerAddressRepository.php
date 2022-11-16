@@ -98,14 +98,20 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
     /**
      * Return's the customer address with the passed increment ID.
      *
-     * @param string|int $icrementId The increment ID of the customer address to return
+     * @param string|integer $incrementId The increment ID of the customer address to return
+     * @param string|integer $customerId  The entity_id of the customer
      *
      * @return array|null The customer
      */
-    public function loadByIncrementId($icrementId)
+    public function loadByIncrementIdAndCustomerEntityId($incrementId, $customerId)
     {
         // if not, try to load the customer with the passed Increment ID
-        $this->customerAddressIncrementIdStmt->execute(array(MemberNames::INCREMENT_ID => $icrementId));
+        $this->customerAddressIncrementIdStmt->execute(
+            array(
+                MemberNames::INCREMENT_ID => $incrementId,
+                MemberNames::PARENT_ID => $customerId
+            )
+        );
         return $this->customerAddressIncrementIdStmt->fetch(\PDO::FETCH_ASSOC);
     }
 }
