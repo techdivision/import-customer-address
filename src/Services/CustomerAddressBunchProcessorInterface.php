@@ -143,6 +143,13 @@ interface CustomerAddressBunchProcessorInterface extends CustomerAddressProcesso
     public function loadCustomerByEmailAndWebsiteId($email, $websiteId);
 
     /**
+     * Return's all country regions from directory
+     *
+     * @return array
+     */
+    public function loadDirectoryCountryRegions();
+
+    /**
      * Persist's the passed customer address data and return's the ID.
      *
      * @param array       $customerAddress The customer address data to persist

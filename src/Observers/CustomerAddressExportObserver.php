@@ -96,7 +96,7 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
         }
         // initialize the array for the links
         $artefacts = array();
-        
+
         $artefacts[] = $this->newArtefact(
             array(
                 ColumnKeys::ENTITY_ID                => $this->getValue(ColumnKeys::ENTITY_ID),
@@ -114,6 +114,8 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::POSTCODE                 => $this->getValue(ColumnKeys::ADDRESS_POSTCODE),
                 ColumnKeys::PREFIX                   => $this->getValue(ColumnKeys::ADDRESS_PREFIX),
                 ColumnKeys::REGION                   => $this->getValue(ColumnKeys::ADDRESS_REGION),
+                ColumnKeys::REGION_CODE              => $this->getValue(ColumnKeys::ADDRESS_REGION_CODE),
+                ColumnKeys::REGION_ID                => $this->getValue(ColumnKeys::ADDRESS_REGION_ID),
                 ColumnKeys::STREET                   => $addressStreet,
                 ColumnKeys::SUFFIX                   => $this->getValue(ColumnKeys::ADDRESS_SUFFIX),
                 ColumnKeys::TELEPHONE                => $this->getValue(ColumnKeys::ADDRESS_TELEPHONE),
@@ -137,6 +139,8 @@ class CustomerAddressExportObserver extends AbstractCustomerAddressImportObserve
                 ColumnKeys::POSTCODE                 => ColumnKeys::ADDRESS_POSTCODE,
                 ColumnKeys::PREFIX                   => ColumnKeys::ADDRESS_PREFIX,
                 ColumnKeys::REGION                   => ColumnKeys::ADDRESS_REGION,
+                ColumnKeys::REGION_CODE              => ColumnKeys::ADDRESS_REGION_CODE,
+                ColumnKeys::REGION_ID                => ColumnKeys::ADDRESS_REGION_ID,
                 ColumnKeys::STREET                   => ColumnKeys::ADDRESS_STREET,
                 ColumnKeys::SUFFIX                   => ColumnKeys::ADDRESS_SUFFIX,
                 ColumnKeys::TELEPHONE                => ColumnKeys::ADDRESS_TELEPHONE,

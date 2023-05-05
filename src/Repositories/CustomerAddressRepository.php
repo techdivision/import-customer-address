@@ -52,6 +52,11 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
     protected $customerAddressIncrementIdStmt;
 
     /**
+     * @var PDOStatement
+     */
+    protected $directoryCountryRegionsStatement;
+
+    /**
      * Initializes the repository's prepared statements.
      *
      * @return void
@@ -66,6 +71,8 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESSES));
         $this->customerAddressIncrementIdStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_ADDRESS_INCREMENT_ID));
+        $this->directoryCountryRegionsStatement =
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGION));
     }
 
     /**
@@ -113,5 +120,28 @@ class CustomerAddressRepository extends AbstractRepository implements CustomerAd
             )
         );
         return $this->customerAddressIncrementIdStmt->fetch(\PDO::FETCH_ASSOC);
+    }
+    /**
+     * Return's all country regions from directory
+     *
+     * @return array
+     */
+    public function findDirectoryCountryRegions()
+    {
+        $directoryCountryRegions = [];
+
+        // execute the prepared statement
+        $this->directoryCountryRegionsStatement->execute();
+
+        // load the available customer groups
+        $avalaibleDirectoryCountryRegions = $this->directoryCountryRegionsStatement->fetchAll();
+
+        // fetch the directory regions and assemble them as array with the codes as key
+        foreach ($avalaibleDirectoryCountryRegions as $countryRegion) {
+            $directoryCountryRegions[$countryRegion[MemberNames::DIRECTORY_REGION_CODE]] = $countryRegion;
+        }
+
+        // return the customer groups
+        return $directoryCountryRegions;
     }
 }

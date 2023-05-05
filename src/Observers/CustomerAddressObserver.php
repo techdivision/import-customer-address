@@ -122,7 +122,7 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
             );
             return [];
         }
-        
+
         // initialize the customer values
         $entityId = $this->getValue(ColumnKeys::ENTITY_ID);
         $city = $this->getValue(ColumnKeys::CITY, '');
@@ -135,7 +135,13 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
         $postcode = $this->getValue(ColumnKeys::POSTCODE);
         $prefix = $this->getValue(ColumnKeys::PREFIX);
         $region = $this->getValue(ColumnKeys::REGION);
+        $regionCode = $this->getValue(ColumnKeys::REGION_CODE);
         $regionId = $this->getValue(ColumnKeys::REGION_ID);
+
+        if (empty($regionId) && !empty($regionCode)) {
+            $regionId = $this->getCountryRegionIdByCode($regionCode);
+        }
+
         $street = $this->getValue(ColumnKeys::STREET, '');
         $suffix = $this->getValue(ColumnKeys::SUFFIX);
         $telephone = $this->checkCustomerPhoneConfig($this->getValue(ColumnKeys::TELEPHONE, ''));
@@ -303,6 +309,18 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
     protected function getStoreWebsiteIdByCode($code)
     {
         return $this->getSubject()->getStoreWebsiteIdByCode($code);
+    }
+
+    /**
+     * Return's the region ID for the given code, if it exists.
+     *
+     * @param string|null $code The code of the requested customer group
+     *
+     * @return integer|null The region ID
+     */
+    protected function getCountryRegionIdByCode($code)
+    {
+        return $this->getSubject()->getCountryRegionIdByCode($code);
     }
 
     /**

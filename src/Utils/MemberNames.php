@@ -69,6 +69,13 @@ class MemberNames extends \TechDivision\Import\Customer\Utils\MemberNames
     const REGION = 'region';
 
     /**
+     * Name for the member 'region_code'.
+     *
+     * @var string
+     */
+    const REGION_CODE = 'region_code';
+
+    /**
      * Name for the member 'region_id'.
      *
      * @var string
@@ -137,4 +144,11 @@ class MemberNames extends \TechDivision\Import\Customer\Utils\MemberNames
      * @var string
      */
     const VAT_REQUEST_SUCCESS = 'vat_request_success';
+
+    /**
+     * Name for the column 'iso_code'.
+     *
+     * @var string
+     */
+    const DIRECTORY_REGION_CODE = 'code';
 }

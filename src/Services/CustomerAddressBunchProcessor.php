@@ -593,6 +593,14 @@ class CustomerAddressBunchProcessor implements CustomerAddressBunchProcessorInte
     }
 
     /**
+     * @return mixed
+     */
+    public function loadDirectoryCountryRegions()
+    {
+        return $this->getCustomerAddressRepository()->findDirectoryCountryRegions();
+    }
+
+    /**
      * Persist's the passed customer address data and return's the ID.
      *
      * @param array       $customerAddress The customer data to persist

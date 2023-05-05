@@ -34,6 +34,13 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
 {
 
     /**
+     * The available country regions.
+     *
+     * @var array
+     */
+    protected $countryRegions = array();
+
+    /**
      * The ID of the product that has been created recently.
      *
      * @var string
@@ -95,8 +102,11 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
         // load the status of the actual import
         $status = $this->getRegistryProcessor()->getAttribute(RegistryKeys::STATUS);
 
-        // load the global data we've prepared initially
-        $this->storeWebsites =  $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
+        if (isset($status[RegistryKeys::GLOBAL_DATA])) {
+            // load the global data we've prepared initially
+            $this->storeWebsites = $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
+            $this->countryRegions = $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::COUNTRY_REGIONS];
+        }
 
         // invoke the parent method
         parent::setUp($serial);
@@ -124,6 +134,18 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
                 sprintf('Found invalid website code %s', $code)
             )
         );
+    }
+
+    /**
+     * @param string $code
+     * @return integer|null
+     */
+    public function getCountryRegionIdByCode($code)
+    {
+        if (isset($this->countryRegions[$code])) {
+            return (integer)$this->countryRegions[$code][MemberNames::REGION_ID];
+        }
+        return null;
     }
 
     /**
