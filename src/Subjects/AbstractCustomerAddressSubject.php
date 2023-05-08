@@ -137,7 +137,7 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
     }
 
     /**
-     * @param string $code
+     * @param string $code  The code of the region code to return the region ID for
      * @return integer|null
      */
     public function getCountryRegionIdByCode($code)
