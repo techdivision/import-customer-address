@@ -250,10 +250,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
         SqlStatementKeys::DELETE_CUSTOMER_ADDRESS_TEXT =>
             'DELETE
                FROM ${table:customer_address_entity_text}
-              WHERE value_id = :value_id',
-        SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGION =>
-            'SELECT *
-               FROM ${table:directory_country_region}',
+              WHERE value_id = :value_id'
     );
 
     /**

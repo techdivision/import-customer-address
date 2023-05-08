@@ -222,11 +222,4 @@ class SqlStatementKeys extends \TechDivision\Import\Utils\SqlStatementKeys
      * @var string
      */
     const CUSTOMER_ADDRESS_INCREMENT_ID = 'select.customer_address.increment_id';
-
-    /**
-     * The SQL statement to read all existing fix product tax.
-     *
-     * @var string
-     */
-    const SELECT_DIRECTORY_COUNTRY_REGION = 'select.entries.directory_country_region';
 }

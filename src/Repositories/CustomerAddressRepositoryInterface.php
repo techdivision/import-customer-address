@@ -53,11 +53,4 @@ interface CustomerAddressRepositoryInterface extends RepositoryInterface
      * @return array|null The customer
      */
     public function loadByIncrementIdAndCustomerEntityId($incrementId, $customerId);
-
-    /**
-     * Return's all country regions from directory
-     *
-     * @return array
-     */
-    public function findDirectoryCountryRegions();
 }
