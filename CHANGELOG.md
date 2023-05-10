@@ -1,3 +1,13 @@
+# Version 17.0.6
+
+## Bugfixes
+
+* none
+
+## Features
+
+* Add support for optional region address fields 'region_id' and 'region_code'
+
 # Version 17.0.5
 
 ## Bugfixes
