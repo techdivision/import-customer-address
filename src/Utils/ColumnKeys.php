@@ -83,6 +83,13 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
     const REGION = 'region';
 
     /**
+     * Name for the column 'region_code'.
+     *
+     * @var string
+     */
+    const REGION_CODE = 'region_code';
+
+    /**
      * Name for the column 'region_id'.
      *
      * @var string
@@ -221,6 +228,20 @@ class ColumnKeys extends \TechDivision\Import\Customer\Utils\ColumnKeys
      * @var string
      */
     const ADDRESS_REGION = '_address_region';
+
+    /**
+     * Name for the column '_address_region_code'.
+     *
+     * @var string
+     */
+    const ADDRESS_REGION_CODE = '_address_region_code';
+
+    /**
+     * Name for the column '_address_region_id'.
+     *
+     * @var string
+     */
+    const ADDRESS_REGION_ID = '_address_region_id';
 
     /**
      * Name for the column '_address_street'.

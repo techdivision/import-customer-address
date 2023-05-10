@@ -14,6 +14,8 @@
 
 namespace TechDivision\Import\Customer\Address\Utils;
 
+use TechDivision\Import\Customer\Utils\RegistryKeys as CustomerRegistryKeys;
+
 /**
  * Utility class containing the unique registry keys.
  *
@@ -23,9 +25,8 @@ namespace TechDivision\Import\Customer\Address\Utils;
  * @link      https://github.com/techdivision/import-customer-address
  * @link      http://www.techdivision.com
  */
-class RegistryKeys extends \TechDivision\Import\Utils\RegistryKeys
+class RegistryKeys extends CustomerRegistryKeys
 {
-
     /**
      * Key for the registry entry containing the preloaded SKU => entity ID mapping.
      *
