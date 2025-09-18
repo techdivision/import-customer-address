@@ -104,8 +104,15 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
 
         if (isset($status[RegistryKeys::GLOBAL_DATA])) {
             // load the global data we've prepared initially
-            $this->storeWebsites = $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
-            $this->countryRegions = $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::COUNTRY_REGIONS];
+            $globalData = $status[RegistryKeys::GLOBAL_DATA];
+
+            if (isset($globalData[RegistryKeys::STORE_WEBSITES])) {
+                $this->storeWebsites = $globalData[RegistryKeys::STORE_WEBSITES];
+            }
+
+            if (isset($globalData[RegistryKeys::COUNTRY_REGIONS])) {
+                $this->countryRegions = $globalData[RegistryKeys::COUNTRY_REGIONS];
+            }
         }
 
         // invoke the parent method

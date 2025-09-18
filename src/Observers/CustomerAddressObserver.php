@@ -48,11 +48,11 @@ class CustomerAddressObserver extends AbstractCustomerAddressImportObserver
      * Initialize the observer with the passed customer bunch processor instance.
      *
      * @param \TechDivision\Import\Customer\Address\Services\CustomerAddressBunchProcessorInterface $customerAddressBunchProcessor The customer address bunch processor instance
-     * @param \TechDivision\Import\Observers\StateDetectorInterface                                 $stateDetector                 The state detector instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface|null $stateDetector                 The state detector instance
      */
     public function __construct(
         CustomerAddressBunchProcessorInterface $customerAddressBunchProcessor,
-        StateDetectorInterface $stateDetector = null
+        ?StateDetectorInterface $stateDetector = null
     ) {
         parent::__construct($stateDetector);
         $this->customerAddressBunchProcessor = $customerAddressBunchProcessor;
