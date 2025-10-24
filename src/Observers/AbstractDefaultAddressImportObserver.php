@@ -58,11 +58,11 @@ abstract class AbstractDefaultAddressImportObserver extends AbstractCustomerImpo
      * DefaultShippingObserver constructor.
      *
      * @param \TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface $customerBunchProcessor The processor instance
-     * @param \TechDivision\Import\Observers\StateDetectorInterface                  $stateDetector          The state detector instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface|null $stateDetector          The state detector instance
      */
     public function __construct(
         CustomerBunchProcessorInterface $customerBunchProcessor,
-        StateDetectorInterface $stateDetector = null
+        ?StateDetectorInterface $stateDetector = null
     ) {
         parent::__construct($stateDetector);
         $this->customerBunchProcessor = $customerBunchProcessor;
