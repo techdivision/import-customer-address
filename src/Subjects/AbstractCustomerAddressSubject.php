@@ -132,7 +132,7 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
 
         // query whether or not, the requested store website is available
         if (isset($this->storeWebsites[$code])) {
-            return (integer) $this->storeWebsites[$code][MemberNames::WEBSITE_ID];
+            return (int)$this->storeWebsites[$code][MemberNames::WEBSITE_ID];
         }
 
         // throw an exception, if not
@@ -150,7 +150,7 @@ abstract class AbstractCustomerAddressSubject extends AbstractEavSubject impleme
     public function getCountryRegionIdByCode($code)
     {
         if (isset($this->countryRegions[$code])) {
-            return (integer)$this->countryRegions[$code][MemberNames::REGION_ID];
+            return (int)$this->countryRegions[$code][MemberNames::REGION_ID];
         }
         return null;
     }
